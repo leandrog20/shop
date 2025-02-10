@@ -82,8 +82,9 @@ section > h3{
 }
 
 .eletronicos, .jogos{
-    width: 80vw;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .eletronicos > div > img{
