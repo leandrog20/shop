@@ -45,16 +45,21 @@ desconto.forEach(produto => {
         secaoDeEletronicos.innerHTML += `
         <div>
         <img src="${produto.img}"/>
+        <div>
         <p>${produto.nome}</p>
         <p>${produto.preco}</p>
+        <div>
         </div>
+        
         `
     } else {
         secaoDeJogos.innerHTML += `
         <div>
         <img src="${produto.img}"/>
+        <div>
         <p>${produto.nome}</p>
         <p>${produto.preco}</p>
+        </div>
         </div>
         `
     }

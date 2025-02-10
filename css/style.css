@@ -82,8 +82,12 @@ section > h3{
 }
 
 .eletronicos, .jogos{
-    width: 90vw;
+    width: 80vw;
     margin: auto;
+}
+
+.eletronicos > div > img{
+    width: 50%;
 }
 
 .eletronicos > div, .jogos > div{
@@ -102,6 +106,9 @@ section > h3{
 box-shadow: -4px 2px 42px -7px rgba(0, 128, 0, 0.381);
 }
 
+
+
+
 .rodape{
     background-color: blueviolet;
 }
@@ -109,5 +116,11 @@ box-shadow: -4px 2px 42px -7px rgba(0, 128, 0, 0.381);
 @media (max-width: 500px){
     .eletronicos > h3{
         width: 50vw;
+    }
+
+    .eletronicos > div, .jogos > div{
+        margin: auto;
+        flex-basis: 150px;
+        height: 200px;
     }
 }
