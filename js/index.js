@@ -90,10 +90,10 @@ function addToCart(){
      }
      quantidy()
         
-        const productCart = document.createElement("div")
-        productCart.classList.add("cart-product")
+        const productCart = document.querySelector("div.cart-product")
 
-        productCart.innerHTML = `
+        productCart.innerHTML += `
+        <div>
         <img src="${productImg}" class="product-cart-img">
     
         
@@ -102,13 +102,40 @@ function addToCart(){
         <input type="number" value="1" min="1" class="product-cart-qtd">
 
         <p class="cart-product-price">${productPrice}</p>
+        </div>
         `
-        cart.append(productCart)
+        
         })
-    }
-            
+    }        
 }
 
+let openClose = true
+
+function openCloseCart(){
+    
+    openClose = !openClose 
+    const total = document.querySelector("div.total").parentElement
+    const cart = document.querySelector(".cart")
+    const container = document.querySelector("main.container")
+    const bodyHTML = document.querySelector("body")
+
+    if(openClose == true){
+        cart.classList.add("show-modal")
+        container.style.pointerEvents = "none"
+        bodyHTML.style.overflowY = "hidden"
+        total.style.opacity = "1"
+    
+    } else {
+        cart.classList.remove("show-modal")
+        total.style.opacity = "0"
+        container.style.pointerEvents = "all"
+        bodyHTML.style.overflowY = "auto"
+    }
+
+    console.log(openClose)
+}
+
+openCloseCart()
 
 
 addToCart()

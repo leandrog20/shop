@@ -15,7 +15,7 @@
         <nav class="menu">
             <div class="cart-icon">
                 <p class="qtd">0</p>
-                <button class="cart-btn"><i class='bx bx-cart-alt'></i></button>
+                <button class="cart-btn" onclick="openCloseCart()"><i class='bx bx-cart-alt'></i></button>
             </div>
             <button class="enter">Entrar</button>
             <button>Fale conosco!</button>
@@ -24,7 +24,14 @@
 
     <div class="modals">
         <aside class="cart">
-            
+            <div class="cart-product"></div>
+            <div>
+                <div class="total">
+                    <p>Total</p>
+                    <p>0</p>
+                </div>
+                <button class="finalizar">finalizar</button>
+            </div>
         </aside>
         <main class="container">
             <section class="presentation">
