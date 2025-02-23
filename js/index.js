@@ -65,10 +65,13 @@ displayProductsOnScreen()
 function increaseDecrease(option){
 
     const quantityItems = document.querySelector(".item-qtd")
+    console.log(quantityItems.innerText)
 
     if(option == true){
         quantityItems.innerHTML++
-    } else {
+    } else if(quantityItems.innerHTML < 0) {
+        quantityItems.innerHTML = 0
+    } else{
         quantityItems.innerHTML--
     }
 
@@ -83,9 +86,9 @@ function updateValueCart(){
       for(let i = 0; i < product.length; i++){
 
         const productPrice = product[i].getElementsByClassName("cart-product-price")[0].innerText.replace(",", "").replace(".", "")
-        const productQuantidy = product[i].getElementsByClassName("product-cart-qtd")[0].value
+        
 
-        total += (productPrice * productQuantidy)/100
+        // total += (productPrice * productQuantidy)/100
      }
 
      const cartTotal = document.querySelector(".cart-total")
@@ -97,9 +100,9 @@ function addToCart(){
     const buttons = document.getElementsByClassName("add")
 
     for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", (event) => {
-        const button = event.target
-        const productInformation = button.parentElement
+        buttons[i].addEventListener("click", () => {
+        
+        const productInformation = buttons[i].parentElement
         const productImg = productInformation.getElementsByClassName("product-image")[0].src
         const productName = productInformation.getElementsByClassName("name")[0].innerHTML
         const productPrice = productInformation.getElementsByClassName("price")[0].innerHTML.replace("R$&nbsp;", "")
@@ -108,7 +111,7 @@ function addToCart(){
 
         for(let i = 0; i < cartProductName.length; i++){
             if(cartProductName[i].innerHTML === productName){
-                cartProductName[i].parentElement.getElementsByClassName("product-cart-qtd")[0].value++
+                cartProductName[i].parentElement.getElementsByClassName("product-cart-qtd")[0].innerHTML++
                 return
             }
      }
@@ -123,7 +126,11 @@ function addToCart(){
     
         <p class="product-cart-name">${productName}</p>
 
-        <input type="number" value="1" min="1" class="product-cart-qtd" onchange="increaseQuantity">
+        <span>
+            <button>+</button>
+            <p class="product-cart-qtd">0</p>
+            <button>-</button>
+        </span>
 
         <p class="cart-product-price">${productPrice}</p>
 
