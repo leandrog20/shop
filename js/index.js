@@ -27,7 +27,6 @@ const result = (function calculateDiscount() {
     return discount;
 })()
 
-
 function displayProductsOnScreen() {
 
     const electronicSection = document.querySelector(".eletronics")
@@ -76,11 +75,23 @@ function increaseDecrease(option){
     
 }
 
+function updateValueCart(){
+    
+    let total = 0
+    const product = document.getElementsByClassName("cart-product")
+   
+      for(let i = 0; i < product.length; i++){
 
+        const productPrice = product[i].getElementsByClassName("cart-product-price")[0].innerText.replace(",", "").replace(".", "")
+        const productQuantidy = product[i].getElementsByClassName("product-cart-qtd")[0].value
 
+        total += (productPrice * productQuantidy)/100
+     }
 
+     const cartTotal = document.querySelector(".cart-total")
 
-
+    cartTotal.innerText = total.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+}
 
 function addToCart(){
     const buttons = document.getElementsByClassName("add")
@@ -92,8 +103,6 @@ function addToCart(){
         const productImg = productInformation.getElementsByClassName("product-image")[0].src
         const productName = productInformation.getElementsByClassName("name")[0].innerHTML
         const productPrice = productInformation.getElementsByClassName("price")[0].innerHTML.replace("R$&nbsp;", "")
-        
-
 
         const cartProductName = document.getElementsByClassName("product-cart-name")
 
@@ -103,7 +112,7 @@ function addToCart(){
                 return
             }
      }
-
+     
      increaseDecrease(true)
         
         const productCart = document.querySelector("div.container-product")
@@ -112,7 +121,6 @@ function addToCart(){
         <div class="cart-product">
         <img src="${productImg}" class="product-cart-img">
     
-        
         <p class="product-cart-name">${productName}</p>
 
         <input type="number" value="1" min="1" class="product-cart-qtd" onchange="increaseQuantity">
@@ -121,9 +129,7 @@ function addToCart(){
 
         <button class="remove"><img src="./img/shop.png"></button>
         </div>
-        
         `
-        
         })
     }        
 }
@@ -143,6 +149,8 @@ main.addEventListener("click", () => {
     }
 })
 
+
+
 function openCloseCart(){
     
     openClose = !openClose 
@@ -161,32 +169,9 @@ function openCloseCart(){
         bodyHTML.style.overflowY = "auto"
     }
 
-    updateValueCart()
+    
     productRemoveToCart()
 
-}
-
-openCloseCart()
-
-function updateValueCart(){
-    
-    let total = 0
-    const product = document.getElementsByClassName("cart-product")
-   
-      for(let i = 0; i < product.length; i++){
-
-        const productPrice = product[i].getElementsByClassName("cart-product-price")[0].innerText.replace(",", "").replace(".", "")
-        const productQuantidy = product[i].getElementsByClassName("product-cart-qtd")[0].value
-
-        total += (productPrice * productQuantidy)/100
-    
-    
-     }
-
-     
-     const cartTotal = document.querySelector(".cart-total")
-
-    cartTotal.innerText = total.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
 }
 
 function increaseQuantity(){
@@ -208,13 +193,8 @@ function productRemoveToCart(){
     }
 }
 
-
-
-
-
-
 addToCart()
-
+openCloseCart()
 
 
 
