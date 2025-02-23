@@ -47,7 +47,7 @@ header {
     color: white;
     padding: 5px;
     border-radius: 10px;
-    background-color: cadetblue;
+    background-color: rgba(95, 158, 160, 0.327);
     display: flex;
     align-items: center;
     text-align: center;
@@ -63,51 +63,55 @@ li {
     cursor: pointer;
 }
 
-.modals {
-    position: relative;
-}
-
-
-
 .cart {
-    background-color: aliceblue;
+    background-color: white;
     overflow: hidden;
     width: 0%;
     justify-content: space-between;
     position: absolute;
     height: calc(100vh - 60px);
-    box-shadow: 6px 7px 15px rgba(0, 0, 0, 0.423);
+    box-shadow: 4px 7px 30px rgba(0, 0, 0, 0.101);
     flex-direction: column;
     transition: all .3s;
 }
 
 .show-modal{
-    width: 400px;
+    width: 450px;
     display: flex;
 }
 
-.cart-product::-webkit-scrollbar {
-    width: 1px;
+.container-product::-webkit-scrollbar {
+    width: 0px;
 }
 
 
-.cart-product {
-    
+.container-product {
+    padding: 10px;
     gap: 10px;
     display: flex;
     overflow: scroll;
     flex-direction: column;
 }
 
-.cart-product div {
+.container-product div {
     height: 70px;
     display: flex;
-    gap: 30px;
+    gap: 25px;
     align-items: center;
 }
 
-.cart-product div>img {
+.container-product div>img {
     width: 60px;
+}
+
+.container-product div>button > img{
+    width: 20px;
+}
+
+.container-product div>button{
+    border: none;
+    padding: 3px 5px;
+    border-radius: 3px;
 }
 
 .product-cart-name {
@@ -122,11 +126,16 @@ li {
     border: none;
 }
 
+
+
 div.total{
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px 0px 25px;
     display: flex;
-    width: 80%;
-    margin: auto;
-    justify-content: space-between;
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
 }
 
 
@@ -136,7 +145,7 @@ button.finalizar{
     padding: 10px 15px;
     border-radius: 10px;
     border: none;
-    margin: 10px auto;
+    margin: 15px auto;
 }
 
 

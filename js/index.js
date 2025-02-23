@@ -19,7 +19,7 @@ const result = (function calculateDiscount() {
         let newValue = product.temDesconto ? product.preco * 0.9 : product.preco
 
         return {
-            ...product, preco: newValue.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
+            ...product, preco: newValue.toLocaleString("pt-br", { style: "currency", currency: "BRL"})
         }
 
     }, 0)
@@ -47,7 +47,7 @@ function displayProductsOnScreen() {
                     <p class="name">${product.nome}</p>
                     <p class="price">${product.preco}</p>
                 </div>
-                <button class="add">Adicionar ao carrinho</button>
+                <button class="add">Adicionar <i class='bx bx-cart-add'></i></button>
                 
                  `
         if (product.categoria === "eletronico") {
@@ -63,9 +63,24 @@ function displayProductsOnScreen() {
 displayProductsOnScreen()
 
 
-function quantidy(){
-    document.querySelector(".qtd").innerHTML++
+function increaseDecrease(option){
+
+    const quantityItems = document.querySelector(".item-qtd")
+
+    if(option == true){
+        quantityItems.innerHTML++
+    } else {
+        quantityItems.innerHTML--
+    }
+
+    
 }
+
+
+
+
+
+
 
 function addToCart(){
     const buttons = document.getElementsByClassName("add")
@@ -77,7 +92,7 @@ function addToCart(){
         const productImg = productInformation.getElementsByClassName("product-image")[0].src
         const productName = productInformation.getElementsByClassName("name")[0].innerHTML
         const productPrice = productInformation.getElementsByClassName("price")[0].innerHTML.replace("R$&nbsp;", "")
-        const cart = document.querySelector(".cart")
+        
 
 
         const cartProductName = document.getElementsByClassName("product-cart-name")
@@ -88,21 +103,25 @@ function addToCart(){
                 return
             }
      }
-     quantidy()
+
+     increaseDecrease(true)
         
-        const productCart = document.querySelector("div.cart-product")
+        const productCart = document.querySelector("div.container-product")
 
         productCart.innerHTML += `
-        <div>
+        <div class="cart-product">
         <img src="${productImg}" class="product-cart-img">
     
         
         <p class="product-cart-name">${productName}</p>
 
-        <input type="number" value="1" min="1" class="product-cart-qtd">
+        <input type="number" value="1" min="1" class="product-cart-qtd" onchange="increaseQuantity">
 
         <p class="cart-product-price">${productPrice}</p>
+
+        <button class="remove"><img src="./img/shop.png"></button>
         </div>
+        
         `
         
         })
@@ -111,31 +130,87 @@ function addToCart(){
 
 let openClose = true
 
+const main = document.querySelector(".container")
+const total = document.querySelector("div.total")
+const cart = document.querySelector(".cart")
+const container = document.querySelector("main.container")
+const bodyHTML = document.querySelector("body")
+const cartIcon = document.querySelector(".cart-icon")
+
+main.addEventListener("click", () => {
+    if(openClose == true){
+        openCloseCart()
+    }
+})
+
 function openCloseCart(){
     
     openClose = !openClose 
-    const total = document.querySelector("div.total").parentElement
-    const cart = document.querySelector(".cart")
-    const container = document.querySelector("main.container")
-    const bodyHTML = document.querySelector("body")
 
     if(openClose == true){
         cart.classList.add("show-modal")
-        container.style.pointerEvents = "none"
+       cartIcon.style.backgroundColor = "cadetblue"
         bodyHTML.style.overflowY = "hidden"
         total.style.opacity = "1"
     
     } else {
+        cartIcon.style.backgroundColor = "rgba(95, 158, 160, 0.327)"
         cart.classList.remove("show-modal")
         total.style.opacity = "0"
         container.style.pointerEvents = "all"
         bodyHTML.style.overflowY = "auto"
     }
 
-    console.log(openClose)
+    updateValueCart()
+    productRemoveToCart()
+
 }
 
 openCloseCart()
+
+function updateValueCart(){
+    
+    let total = 0
+    const product = document.getElementsByClassName("cart-product")
+   
+      for(let i = 0; i < product.length; i++){
+
+        const productPrice = product[i].getElementsByClassName("cart-product-price")[0].innerText.replace(",", "").replace(".", "")
+        const productQuantidy = product[i].getElementsByClassName("product-cart-qtd")[0].value
+
+        total += (productPrice * productQuantidy)/100
+    
+    
+     }
+
+     
+     const cartTotal = document.querySelector(".cart-total")
+
+    cartTotal.innerText = total.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+}
+
+function increaseQuantity(){
+updateValueCart()
+}
+
+
+
+function productRemoveToCart(){
+
+    const buttonsRemove = document.getElementsByClassName("remove")
+    for(let i = 0; i < buttonsRemove.length; i++){
+       buttonsRemove[i].addEventListener("click",  (event) => {
+        const button = event.target
+            button.parentElement.parentElement.remove()
+            increaseDecrease(false)
+            updateValueCart()
+      })
+    }
+}
+
+
+
+
 
 
 addToCart()

@@ -13,22 +13,21 @@
     <header>
         <img src="img/icon.png" alt="logo">
         <nav class="menu">
-            <div class="cart-icon">
-                <p class="qtd">0</p>
-                <button class="cart-btn" onclick="openCloseCart()"><i class='bx bx-cart-alt'></i></button>
+            <div class="cart-icon" onclick="openCloseCart()">
+                <p class="item-qtd">0</p>
+                <button class="cart-btn" ><i class='bx bx-cart-alt'></i></button>
             </div>
             <button class="enter">Entrar</button>
             <button>Fale conosco!</button>
         </nav>
     </header>
 
-    <div class="modals">
         <aside class="cart">
-            <div class="cart-product"></div>
-            <div>
-                <div class="total">
-                    <p>Total</p>
-                    <p>0</p>
+            <div class="container-product"></div>
+            <div class="total">
+                <div>
+                    <h4>Total</h4>
+                    <p class="cart-total">0</p>
                 </div>
                 <button class="finalizar">finalizar</button>
             </div>
@@ -46,11 +45,9 @@
                 <h3>Jogos</h3>
                 <div class="games"></div>
             </section>
-
         </main>
 
-    </div>
-    <script src="js/index.js"></script>
+    <script async src="js/index.js"></script>
 
 </body>
 
