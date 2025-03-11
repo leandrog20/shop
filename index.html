@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
     <title>Document</title>
 </head>
 
@@ -14,8 +15,10 @@
         <img src="img/icon.png" alt="logo">
         <nav class="menu">
             <div class="cart-icon" onclick="openCloseCart()">
-                <p class="item-qtd">0</p>
-                <button class="cart-btn" ><i class='bx bx-cart-alt'></i></button>
+                <div></div>
+                <button class="cart-btn"><span class="material-symbols-outlined">
+                    shopping_bag
+                    </span></button>
             </div>
             <button class="enter">Entrar</button>
             <button>Fale conosco!</button>
@@ -25,30 +28,31 @@
         <aside class="cart">
             <div class="container-product"></div>
             <div class="total">
-                <div>
-                    <h4>Total</h4>
-                    <p class="cart-total">0</p>
-                </div>
-                <button class="finalizar">finalizar</button>
+                    <p class="cart-total">0,00</p>
+                <button class="finalizar" onclick="verify()">finalizar</button>
             </div>
         </aside>
         <main class="container">
-            <section class="presentation">
-                <h2>Connect</h2>
-                <p>Seja bem-vindo à nossa loja online, onde a tecnologia e o entretenimento se encontram! Aqui</p>
-            </section>
-            <section>
-                <h3>Eletronicos</h3>
-                <div class="eletronics"></div>
-            </section>
-            <section>
-                <h3>Jogos</h3>
-                <div class="games"></div>
-            </section>
+                <div>
+                    <h2>Connect</h2>
+                    <p>Seja bem-vindo à nossa loja online, onde a tecnologia e o entretenimento se encontram! Aqui</p>
+                </div>
+                <div>
+                   <img src="img/973.jpg">
+                </div>
         </main>
+        <section>
+            <h3>Eletronicos</h3>
+            <div class="eletronics"></div>
+        </section>
+        <section>
+            <h3>Jogos</h3>
+            <div class="games"></div>
+        </section>
+        
 
     <script src="js/index.js"></script>
-
+       
 </body>
 
 </html>

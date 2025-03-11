@@ -12,197 +12,204 @@ const products = [
     { id: 11, nome: "God Of War", preco: 300.00, temDesconto: false, quantidade: 5, img: "", categoria: "jogo" }
 ]
 
-
-const result = (function calculateDiscount() {
-    const discount = products.map(product => {
-
-        let newValue = product.temDesconto ? product.preco * 0.9 : product.preco
-
-        return {
-            ...product, preco: newValue.toLocaleString("pt-br", { style: "currency", currency: "BRL"})
-        }
-
-    }, 0)
-
-    return discount;
-})()
-
-function displayProductsOnScreen() {
-
-    const electronicSection = document.querySelector(".eletronics")
-
-    const gameSection = document.querySelector(".games")
-
-    result.forEach(product => {
-
-        const newProduct = document.createElement("div")
-
-        newProduct.classList.add("product")
-
-
-       newProduct.innerHTML = `
-                <div class="product-information">
-                    <img src="${product.img}" class="product-image">
-                    <p class="name">${product.nome}</p>
-                    <p class="price">${product.preco}</p>
-                </div>
-                <button class="add">Adicionar <i class='bx bx-cart-add'></i></button>
-                
-                 `
-        if (product.categoria === "eletronico") {
-            electronicSection.append(newProduct)
-        } else {
-            gameSection.append(newProduct)
-        }
-
-    })
-
-}
-
-displayProductsOnScreen()
-
-
-function increaseDecrease(option){
-
-    const quantityItems = document.querySelector(".item-qtd")
-    console.log(quantityItems.innerText)
-
-    if(option == true){
-        quantityItems.innerHTML++
-    } else if(quantityItems.innerHTML < 0) {
-        quantityItems.innerHTML = 0
-    } else{
-        quantityItems.innerHTML--
+class Product {
+    constructor(id, name, price, quantidy){
+        this.id = id
+        this.name = name,
+        this.price = price,
+        this.quantidy = quantidy
+    }
+  
     }
 
-    
-}
+// const result = (function calculateDiscount() {
+//     const discount = products.map(product => {
 
-function updateValueCart(){
-    
-    let total = 0
-    const product = document.getElementsByClassName("cart-product")
+//         let newValue = product.temDesconto ? product.preco * 0.9 : product.preco
+
+//         return {
+//             ...product, preco: newValue.toLocaleString("pt-br", { style: "currency", currency: "BRL"})
+//         }
+
+//     }, 0)
+
+//     return discount;
+// })()
+
+
+let cart = []
+
+products.map( (product) => {
+    const formattedPrice = product.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+    const items = `<div class="items" data-key="${product.id}">
+                        <img src="${product.img}" class="product-image">
+                        <p class="name">${product.nome}</p>
+                        <p class="price">${formattedPrice}</p>
+                   
+                    <button class="add">Adicionar</button>
+
+                     </div>
+                    `
+
+
+                    if(product.categoria == "eletronico"){
+                        document.querySelector(".eletronics").innerHTML += items
+                    }else {
+                        document.querySelector(".games").innerHTML += items
+                    }
+})
    
-      for(let i = 0; i < product.length; i++){
-
-        const productPrice = product[i].getElementsByClassName("cart-product-price")[0].innerText.replace(",", "").replace(".", "")
-        
-
-        // total += (productPrice * productQuantidy)/100
-     }
-
-     const cartTotal = document.querySelector(".cart-total")
-
-    cartTotal.innerText = total.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
-}
-
-function addToCart(){
+function buttonsAdd(){
     const buttons = document.getElementsByClassName("add")
 
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", () => {
-        
-        const productInformation = buttons[i].parentElement
-        const productImg = productInformation.getElementsByClassName("product-image")[0].src
-        const productName = productInformation.getElementsByClassName("name")[0].innerHTML
-        const productPrice = productInformation.getElementsByClassName("price")[0].innerHTML.replace("R$&nbsp;", "")
-
-        const cartProductName = document.getElementsByClassName("product-cart-name")
-
-        for(let i = 0; i < cartProductName.length; i++){
-            if(cartProductName[i].innerHTML === productName){
-                cartProductName[i].parentElement.getElementsByClassName("product-cart-qtd")[0].innerHTML++
-                return
-            }
-     }
-     
-     increaseDecrease(true)
-        
-        const productCart = document.querySelector("div.container-product")
-
-        productCart.innerHTML += `
-        <div class="cart-product">
-        <img src="${productImg}" class="product-cart-img">
-    
-        <p class="product-cart-name">${productName}</p>
-
-        <span>
-            <button>+</button>
-            <p class="product-cart-qtd">0</p>
-            <button>-</button>
-        </span>
-
-        <p class="cart-product-price">${productPrice}</p>
-
-        <button class="remove"><img src="./img/shop.png"></button>
-        </div>
-        `
+    for(let i in buttons){
+        buttons[i].addEventListener("click", (e) => {
+            const buttonParentElement = e.target.parentElement
+            let id = buttonParentElement.getAttribute("data-key")
+            
+             addToCart(id)
+             updateTotalValueCart()
+             //numberItems()
         })
-    }        
+    }
 }
 
+function addToCart(id){
+            
+        const checkTheIdExistence = cart.findIndex(item => item.id == id)
+    
+        if(checkTheIdExistence == -1){
+        const product = products.filter(item => item.id == id)
+            const produto = new Product(product[0].id, product[0].nome, product[0].preco, 1)
+
+    cart.push(produto)
+
+        } else {
+              cart.forEach(item => item.id == id ? item.quantidy += 1 : item.quantidade = item.quantidade)
+        }
+
+        addToCartScreen()
+          
+}
+
+function addToCartScreen(){
+   
+    let htmlOfProducts = ''
+
+    cart.map(itemCart => {
+        let product = products.filter(productArrItem => productArrItem.id == itemCart.id)
+        const formattedPrice = itemCart.price.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+
+        htmlOfProducts += `<div class="cart-product" data-key="${itemCart.id}">
+        <img src="${product[0].img}"/>
+        <div>
+         <p>${itemCart.name}</p>
+        
+        <span class="btn-qtd">
+                <button onclick="moreButton(this)">+</button>
+                <p>${itemCart.quantidy}</p>
+                <button onclick="minusButton(this)">-</button>
+            </span>
+              <p>${formattedPrice}</p>
+        </div>
+        </div>`
+    })
+
+    document.querySelector(".container-product").innerHTML = htmlOfProducts
+        
+    }
+
+    function moreButton(e){
+        let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
+        console.log(elementId)
+        let quantidy = e.parentElement.querySelector("p")
+        quantidy.innerHTML++
+
+        addToCart(elementId) // aumenta a quantidade do item chamando a função addToCart()
+        updateTotalValueCart()
+       
+    }
+
+    function minusButton(e){
+        let quantidy = e.parentElement.querySelector("p")
+        console.log(quantidy)
+        let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
+        
+             quantidy.innerHTML--
+
+            // diminui a quantidade do item no array
+            let item = cart.find(item => item.id == elementId) 
+            item.quantidy -= 1
+        
+        updateTotalValueCart()
+        removeToCart()
+    
+    }
+
+    function updateTotalValueCart(){
+            
+        const totalCartValue = cart.reduce( (acumulador, item) => {
+            return acumulador += (item.price * item.quantidy)
+        }, 0)
+     
+        document.querySelector(".cart-total").innerHTML =  totalCartValue.toLocaleString("pt-br", {style: "currency", currency: "BRL"})    
+    }
+
+
+    // function numberItems(){
+    //  document.querySelector(".item-qtd").innerHTML = cart.length
+    // }
+
+    function removeToCart(){
+
+         let newCart = cart.filter(item => item.quantidy !== 0)
+         
+         cart = newCart
+           
+           addToCartScreen()
+        //numberItems()
+        
+    }
+
+    function verify(){
+
+        if(cart.length == 0){
+            alert("Adicione items ao carrinho")
+        }
+        
+    }
+
 let openClose = true
-
-const main = document.querySelector(".container")
 const total = document.querySelector("div.total")
-const cart = document.querySelector(".cart")
-const container = document.querySelector("main.container")
-const bodyHTML = document.querySelector("body")
+const cartButton = document.querySelector(".cart")
 const cartIcon = document.querySelector(".cart-icon")
-
+const main = document.querySelector(".container")
 main.addEventListener("click", () => {
     if(openClose == true){
         openCloseCart()
     }
 })
 
-
-
 function openCloseCart(){
     
     openClose = !openClose 
 
     if(openClose == true){
-        cart.classList.add("show-modal")
-       cartIcon.style.backgroundColor = "cadetblue"
-        bodyHTML.style.overflowY = "hidden"
+        cartButton.classList.add("show-cart")
         total.style.opacity = "1"
     
     } else {
-        cartIcon.style.backgroundColor = "rgba(95, 158, 160, 0.327)"
-        cart.classList.remove("show-modal")
+        cartButton.classList.remove("show-cart")
         total.style.opacity = "0"
-        container.style.pointerEvents = "all"
-        bodyHTML.style.overflowY = "auto"
-    }
-
-    
-    productRemoveToCart()
+    }   
 
 }
 
-function increaseQuantity(){
-updateValueCart()
-}
 
 
 
-function productRemoveToCart(){
-
-    const buttonsRemove = document.getElementsByClassName("remove")
-    for(let i = 0; i < buttonsRemove.length; i++){
-       buttonsRemove[i].addEventListener("click",  (event) => {
-        const button = event.target
-            button.parentElement.parentElement.remove()
-            increaseDecrease(false)
-            updateValueCart()
-      })
-    }
-}
-
-addToCart()
-openCloseCart()
-
+  
+buttonsAdd()
 
 
 
