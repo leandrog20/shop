@@ -143,7 +143,7 @@ function addToCartScreen(){
         
         updateTotalValueCart()
         removeToCart()
-    
+        closeCartWhenThereAreNoItems()
     }
 
     function updateTotalValueCart(){
@@ -171,44 +171,41 @@ function addToCartScreen(){
         
     }
 
-    function verify(){
+    function closeCartWhenThereAreNoItems(){
 
         if(cart.length == 0){
-            alert("Adicione items ao carrinho")
+            openClose = false
+            openCloseCart() 
         }
-        
     }
 
-let openClose = true
+let openClose = false
 const total = document.querySelector("div.total")
 const cartButton = document.querySelector(".cart")
 const cartIcon = document.querySelector(".cart-icon")
 const main = document.querySelector(".container")
 main.addEventListener("click", () => {
-    if(openClose == true){
+    if(openClose == false){
         openCloseCart()
     }
 })
 
 function openCloseCart(){
-    
-    openClose = !openClose 
-
     if(openClose == true){
-        cartButton.classList.add("show-cart")
+        if(window.innerWidth <= 750){
+            cartButton.style.width = "100%" 
+        } else {
+        cartButton.style.width = "550px"
         total.style.opacity = "1"
-    
+        }
     } else {
-        cartButton.classList.remove("show-cart")
+        cartButton.style.width = "0px"
         total.style.opacity = "0"
-    }   
-
+    }
+    openClose = !openClose
 }
 
-
-
-
-  
+openCloseCart()
 buttonsAdd()
 
 
