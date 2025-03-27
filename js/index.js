@@ -1,15 +1,28 @@
 const products = [
-    { id: 1, nome: "Sansumg Galaxy S21", preco: 3999.99, temDesconto: true, quantidade: 2, img: "img/s2 ultra.png", categoria: "eletronico" },
-    { id: 2, nome: "Notebook Dell Inspiron", preco: 4500.00, temDesconto: false, quantidade: 3, img: "img/notebook dell inspiron.png", categoria: "eletronico" },
-    { id: 3, nome: "Smart TV LG 55", preco: 2799.00, temDesconto: true, quantidade: 5, img: "img/tv Lg 55.png", categoria: "eletronico" },
-    { id: 4, nome: "Fone de Ouvido Bluetooth JBL", preco: 299.90, temDesconto: false, quantidade: 2, img: "img/fone de ouvido jbl.png", categoria: "eletronico" },
-    { id: 5, nome: "Câmera DSRL Canon", preco: 3200.00, temDesconto: true, quantidade: 1, img: "img/camera canon.png", categoria: "eletronico" },
-    { id: 6, nome: "Tablet Ipad Air", preco: 4199.00, temDesconto: false, quantidade: 8, img: "img/ipad.png", categoria: "eletronico" },
-    { id: 7, nome: "Console PlayStation 5", preco: 4699.00, temDesconto: true, quantidade: 2, img: "img/play5.png", categoria: "eletronico" },
-    { id: 8, nome: "SmartWatch Apple Watch", preco: 2499.00, temDesconto: false, quantidade: 7, img: "img/smatwatch.png", categoria: "eletronico" },
-    { id: 9, nome: "Impressora HP Multifuncional", preco: 599.90, temDesconto: true, quantidade: 5, img: "img/impressora HP.png", categoria: "eletronico" },
-    { id: 10, nome: "Caixa de Som Portátil Sony", preco: 1000.00, temDesconto: false, quantidade: 3, img: "img/caixa de som sony.png", categoria: "eletronico" },
-    { id: 11, nome: "God Of War", preco: 300.00, temDesconto: false, quantidade: 5, img: "", categoria: "jogo" }
+    { id: 1, name: "Air Jordan 1 Mid", price: 1199.99, quantidy: 2, img: "img/air jordan 1 .webp", brand: "Nike" },
+    { id: 2, name: "Air Jordan 1 Mid", price: 1199.99, quantidy: 2, img: "img/air jordan 1 (2).webp", brand: "Nike" },
+    { id: 3, name: "Air Jordan 1 Mid", price: 1199.99, quantidy: 2, img: "img/air jordan 1 (3).webp", brand: "Nike" },
+    { id: 4, name: "Air Jordan 1 Mid", price: 1199.99, quantidy: 2, img: "img/air jordan 1 (4).webp", brand: "Nike" },
+    { id: 5, name: "Air Jordan 1 Mid", price: 1199.99, quantidy: 2, img: "img/air jordan 1 (5).webp", brand: "Nike" },
+    { id: 6, name: "Asics Gel-Nyc", price: 899.99, quantidy: 2, img: "img/Asics Gel Nyc.webp", brand: "Asics" },
+    { id: 7, name: "Asics Gel-Nyc", price: 899.99, quantidy: 2, img: "img/Asics Gel Nyc (1).webp", brand: "Asics" },
+    { id: 8, name: "Asics Gel-Nyc", price: 899.99, quantidy: 2, img: "img/Asics Gel Nyc (2).webp", brand: "Asics" },
+    { id: 9, name: "Nike Book 1", price: 1199.99, quantidy: 2, img: "img/nike book 1.webp", brand: "Nike" },
+    { id: 10, name: "Nike Book 1", price: 1199.99, quantidy: 2, img: "img/nike book 1 (1).webp", brand: "Nike" },
+    { id: 11, name: "Nike Book 1", price: 1199.99, quantidy: 2, img: "img/nike book 1 (2).webp", brand: "Nike" },
+    { id: 12, name: "Nike Book 1", price: 1199.99, quantidy: 2, img: "img/nike book 1 (3).webp", brand: "Nike" },
+    { id: 13, name: "Nike Book 1", price: 1799.99, quantidy: 2, img: "img/jordan 4.webp", brand: "Nike" },
+    { id: 14, name: "Nike Dunk Low", price: 999.99, quantidy: 2, img: "img/nike dunk.webp", brand: "Nike" },
+    { id: 15, name: "Nike Dunk Low", price: 999.99, quantidy: 2, img: "img/nike dunk (1).webp", brand: "Nike" },
+    { id: 16, name: "Nike Dunk Low", price: 999.99, quantidy: 2, img: "img/nike dunk (2).webp", brand: "Nike" },
+    { id: 17, name: "Nike Shox R4", price: 1199.99, quantidy: 2, img: "img/nike shox r4.webp", brand: "Nike" },
+    { id: 18, name: "Nike Shox R4", price: 1199.99, quantidy: 2, img: "img/nike shox r4 (1).webp", brand: "Nike" },
+    { id: 19, name: "Nike Shox R4", price: 1199.99, quantidy: 2, img: "img/nike shox r4 (2).webp", brand: "Nike" },
+    { id: 20, name: "Nike Shox TL", price: 1199.99, quantidy: 2, img: "img/nike shox tl.webp", brand: "Nike" },
+    { id: 21, name: "Nike Shox TL", price: 1199.99, quantidy: 2, img: "img/nike shox tl (1).webp", brand: "Nike" },
+    { id: 22, name: "Vans Old Skool", price: 449.99, quantidy: 2, img: "img/vans old skool.webp", brand: "Vans" },
+    { id: 23, name: "Asics Kayano 20", price: 899.99, quantidy: 2, img: "img/asics kayano 20.webp", brand: "Asics" },
+    { id: 24, name: "Asics Kayano 20", price: 1299.99, quantidy: 2, img: "img/asics kayano 20 (1).webp", brand: "Asics" }
 ]
 
 class Product {
@@ -38,25 +51,50 @@ class Product {
 
 
 let cart = []
+let brands = []
 
-products.map( (product) => {
-    const formattedPrice = product.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
-    const items = `<div class="items" data-key="${product.id}">
-                        <img src="${product.img}" class="product-image">
-                        <p class="name">${product.nome}</p>
-                        <p class="price">${formattedPrice}</p>
-                   
-                    <button class="add">Adicionar</button>
 
+function separateByBrand(){
+    products.forEach(element => {
+        if(!brands.includes(element.brand)){
+            brands.push(element.brand)
+        }
+    })
+
+    for(let i = 0; i < brands.length; i++){
+        const mm = document.querySelector("body")
+        const section = document.createElement("section")
+        const h3 = document.createElement("h3")
+        const div = document.createElement("div")
+        section.setAttribute("data-key", `${brands[i]}`)
+        h3.innerHTML = `${brands[i]}`
+        section.appendChild(h3)
+        div.classList.add("dragscroll")
+        section.appendChild(div)
+        mm.appendChild(section)
+    }
+}
+
+separateByBrand()
+
+
+products.map( (item) => {
+    // const formattedPrice = item.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+    const items = `<div class="items" data-key="${item.id}">
+                        <img src="${item.img}" class="product-image">
+                        <p class="name">${item.name}</p>
                      </div>
                     `
+    const sections = document.querySelectorAll("section")
 
+    for(let i = 0; i < sections.length; i++){
+        let id = sections[i].getAttribute("data-key")
+        if(item.brand == id){
+          
+            sections[i].children[1].innerHTML += items
+        }
+    }
 
-                    if(product.categoria == "eletronico"){
-                        document.querySelector(".eletronics").innerHTML += items
-                    }else {
-                        document.querySelector(".games").innerHTML += items
-                    }
 })
    
 function buttonsAdd(){
@@ -69,7 +107,6 @@ function buttonsAdd(){
             
              addToCart(id)
              updateTotalValueCart()
-             //numberItems()
         })
     }
 }
@@ -80,12 +117,12 @@ function addToCart(id){
     
         if(checkTheIdExistence == -1){
         const product = products.filter(item => item.id == id)
-            const produto = new Product(product[0].id, product[0].nome, product[0].preco, 1)
+            const produto = new Product(product[0].id, product[0].name, product[0].price, 1)
 
     cart.push(produto)
 
         } else {
-              cart.forEach(item => item.id == id ? item.quantidy += 1 : item.quantidade = item.quantidade)
+              cart.forEach(item => item.id == id ? item.quantidy += 1 : item.quantidy = item.quantidy)
         }
 
         addToCartScreen()
@@ -155,11 +192,6 @@ function addToCartScreen(){
         document.querySelector(".cart-total").innerHTML =  totalCartValue.toLocaleString("pt-br", {style: "currency", currency: "BRL"})    
     }
 
-
-    // function numberItems(){
-    //  document.querySelector(".item-qtd").innerHTML = cart.length
-    // }
-
     function removeToCart(){
 
          let newCart = cart.filter(item => item.quantidy !== 0)
@@ -167,45 +199,35 @@ function addToCartScreen(){
          cart = newCart
            
            addToCartScreen()
-        //numberItems()
         
     }
 
     function closeCartWhenThereAreNoItems(){
 
         if(cart.length == 0){
-            openClose = false
-            openCloseCart() 
+            closeCart() 
         }
     }
 
-let openClose = false
-const total = document.querySelector("div.total")
 const cartButton = document.querySelector(".cart")
-const cartIcon = document.querySelector(".cart-icon")
-const main = document.querySelector(".container")
-main.addEventListener("click", () => {
-    if(openClose == false){
-        openCloseCart()
-    }
-})
 
-function openCloseCart(){
-    if(openClose == true){
-        if(window.innerWidth <= 750){
-            cartButton.style.width = "100%" 
-        } else {
-        cartButton.style.width = "550px"
-        total.style.opacity = "1"
-        }
+function openCart(){
+    if(window.innerWidth <= 750){
+        cartButton.style.width = "100%" 
     } else {
-        cartButton.style.width = "0px"
-        total.style.opacity = "0"
+    cartButton.style.width = "550px"
     }
-    openClose = !openClose
 }
 
-openCloseCart()
+
+function closeCart(){
+    cartButton.style.width = "0px"
+}
+
+
+
+
+
 buttonsAdd()
 
 
