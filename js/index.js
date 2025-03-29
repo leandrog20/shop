@@ -64,11 +64,11 @@ function separateByBrand(){
     for(let i = 0; i < brands.length; i++){
         const mm = document.querySelector("body")
         const section = document.createElement("section")
-        const h3 = document.createElement("h3")
+        const h2 = document.createElement("h2")
         const div = document.createElement("div")
         section.setAttribute("data-key", `${brands[i]}`)
-        h3.innerHTML = `${brands[i]}`
-        section.appendChild(h3)
+        h2.innerHTML = `${brands[i]}`
+        section.appendChild(h2)
         div.classList.add("dragscroll")
         section.appendChild(div)
         mm.appendChild(section)
@@ -78,20 +78,20 @@ function separateByBrand(){
 separateByBrand()
 
 
-products.map( (item) => {
+products.map( (element) => {
     // const formattedPrice = item.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
-    const items = `<div class="items" data-key="${item.id}">
-                        <img src="${item.img}" class="product-image">
-                        <p class="name">${item.name}</p>
+    const item = `<div class="item" data-key="${element.id}">
+                        <img src="${element.img}" class="product-image">
+                        <button>Add</button>
                      </div>
                     `
     const sections = document.querySelectorAll("section")
 
     for(let i = 0; i < sections.length; i++){
         let id = sections[i].getAttribute("data-key")
-        if(item.brand == id){
+        if(element.brand == id){
           
-            sections[i].children[1].innerHTML += items
+            sections[i].children[1].innerHTML += item
         }
     }
 
