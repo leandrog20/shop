@@ -62,16 +62,17 @@ function separateByBrand(){
     })
 
     for(let i = 0; i < brands.length; i++){
-        const mm = document.querySelector("body")
+        const body = document.querySelector("body")
         const section = document.createElement("section")
         const h2 = document.createElement("h2")
         const div = document.createElement("div")
+        section.id = "shoes"
         section.setAttribute("data-key", `${brands[i]}`)
         h2.innerHTML = `${brands[i]}`
         section.appendChild(h2)
         div.classList.add("dragscroll")
         section.appendChild(div)
-        mm.appendChild(section)
+        body.appendChild(section)
     }
 }
 
@@ -80,18 +81,29 @@ separateByBrand()
 
 products.map( (element) => {
     // const formattedPrice = item.preco.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
-    const item = `<div class="item" data-key="${element.id}">
-                        <img src="${element.img}" class="product-image">
-                        <button>Add</button>
-                     </div>
-                    `
+    // const item = `<div class="item" data-key="${element.id}">
+    //                     <img src="${element.img}" class="product-image">
+    //                     <button>Adicionar <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M11 9V6H8V4h3V1h2v3h3v2h-3v3zM7 22q-.825 0-1.412-.587T5 20t.588-1.412T7 18t1.413.588T9 20t-.587 1.413T7 22m10 0q-.825 0-1.412-.587T15 20t.588-1.412T17 18t1.413.588T19 20t-.587 1.413T17 22M1 4V2h3.275l4.25 9h7l3.9-7H21.7l-4.4 7.95q-.275.5-.737.775T15.55 13H8.1L7 15h12v2H7q-1.125 0-1.713-.975T5.25 14.05L6.6 11.6L3 4z"/></svg></button>
+    //                  </div>
+    //                 `
+
+                    const item = document.createElement("div")
+                    item.classList.add("item")
+                    item.setAttribute("data-key", `${element.id}`)
+                    const img = document.createElement("img")
+                    img.setAttribute("src", `${element.img}`)
+                    const button = document.createElement("button")
+                    button.innerHTML = `Adicionar`
+                    item.appendChild(img)
+                    item.appendChild(button)
+                    
     const sections = document.querySelectorAll("section")
 
     for(let i = 0; i < sections.length; i++){
         let id = sections[i].getAttribute("data-key")
         if(element.brand == id){
           
-            sections[i].children[1].innerHTML += item
+            sections[i].children[1].appendChild(item)
         }
     }
 

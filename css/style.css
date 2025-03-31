@@ -12,12 +12,18 @@
     box-sizing: border-box;
     font-family: 'rubik', sans-serif;
     font-weight: 600;
+    text-decoration: none;
 }
 
-#345ba0
+/* #345ba0 */
 
 body {
     font-family: 'poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 header > img {
@@ -35,6 +41,7 @@ header {
    position: fixed;
     width: 100%;
     background-color: white;
+    z-index: 1;
 }
 
 .menu{
@@ -63,8 +70,12 @@ header {
     justify-content: center;
     flex-direction: column;
     text-align: justify;
-    margin-bottom: 50px;
-    
+    margin-bottom: 20px;
+    box-shadow: -5px 10px 20px #345ca046; 
+}
+
+.container > h1{
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.229);
 }
 
 .container > p{
@@ -85,6 +96,10 @@ header {
     border: none;
 }
 
+.container > button > a{
+    margin: 0 auto;
+}
+
 .container > h1{
     font-family: "Inter", sans-serif;
     font-weight: 900;
@@ -99,31 +114,31 @@ header {
     margin-left: 50px;
 }
 
+
+
 section > h2{
     
     text-indent: 50px;
    
 }
 
-section{
-    overflow: scroll;
-}
-
 section > div{
     gap: 30px;
 
-   
+    overflow: scroll;
     margin-left: 20px;
 }
 
-section::-webkit-scrollbar{
+section > div::-webkit-scrollbar{
     scroll-padding: 0px;
 }
 
 .item{
+    display: flex;
+    justify-content: center;
 
     position: relative;
-    
+    padding: 10px;
 }
 
 .item > img{
@@ -133,18 +148,26 @@ section::-webkit-scrollbar{
 }
 
 .item > button{
-    padding: 2px 30%;
+    padding: 1px 10px;
     position: absolute;
-    top: 82%;
+    top: 80%;
     transition: all 0.2s;
-    left: 20%;
+    display: flex;
     opacity: 0;
+    border-radius: 20px;
+    border: none;
+    align-items: center;
+    gap: 2px;
+}
+
+.item > button > svg{
+    width: 15px;
 }
 
 .item:hover button{
   opacity: 1;
-    left: 20%;
-    top: 80%;   
+   
+    top: 75%;   
     
 }
 
@@ -162,6 +185,7 @@ section::-webkit-scrollbar{
     flex-direction: column;
     overflow: scroll;
     box-shadow: 5px -2px 10px #15046c2a;
+    z-index: 1;
 }
 
 .cart::-webkit-scrollbar{
@@ -220,7 +244,6 @@ section::-webkit-scrollbar{
     width: 45%;
   height: 70%;
   background-color: red;
-  /* Centralizar na vertical e na horizontal */
   position: fixed;
   top: 50%;
   left: 50%;
@@ -231,9 +254,11 @@ section::-webkit-scrollbar{
    width: 800px;
    height: 400px;
    overflow: hidden;
+   margin-bottom: 100px;
 }
 
 .slides{
+    
     width: 400%;
     height: 400px;
     display: flex;
@@ -245,6 +270,7 @@ section::-webkit-scrollbar{
 
 .slide{
     width: 25%;
+    overflow: hidden;
     position: relative;
     display: flex;
     justify-content: center;
@@ -266,7 +292,7 @@ section::-webkit-scrollbar{
 }
 
 .manual-btn{
-    border: 2px solid #fff;
+    border: 2px solid #000;
     padding: 5px;
     border-radius: 10px;
     margin: 0 2px;
@@ -311,6 +337,8 @@ section::-webkit-scrollbar{
 
 .banners > img{
     width: 25%;
+    height: 385px;
+    box-shadow: -5px 10px 10px rgba(0, 0, 0, 0.155);
 }
 
 #radio1:checked ~ .navigation .btn1{
@@ -326,8 +354,8 @@ section::-webkit-scrollbar{
 
 
 @media (max-width: 750px) {
-    .container > div:nth-child(2){
-        display: none;
+    .container{
+        margin-bottom: 0px;
     }
 
     .container > h1{
@@ -344,12 +372,13 @@ section::-webkit-scrollbar{
 
 
     .slider{
-        width: 100%;
-
+        width: 95vw;
+        height: 300px;
+        margin-bottom: 150px;
     }
 
     .slide img{
-        width: 100%;
+        width: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
