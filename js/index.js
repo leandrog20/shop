@@ -225,7 +225,21 @@ function closeCart(){
 }
 
 
+let count = 1
 
+document.querySelector("#radio1").checked = true
+
+setInterval(() => {
+    nextbanner()
+}, 2500)
+
+function nextbanner(){
+    count++
+    if(count > 2){
+        count = 1
+    }
+    document.querySelector("#radio" + count).checked = true
+}
 
 
 buttonsAdd()
