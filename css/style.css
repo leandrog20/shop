@@ -19,7 +19,6 @@
 
 body {
     font-family: 'poppins', sans-serif;
-    overflow-x: hidden;
 }
 
 html{
@@ -148,27 +147,21 @@ section > div::-webkit-scrollbar{
 }
 
 .item > button{
-    padding: 1px 10px;
+    padding: 5px 15px;
     position: absolute;
     top: 80%;
     transition: all 0.2s;
     display: flex;
     opacity: 0;
     border-radius: 20px;
-    border: none;
-    align-items: center;
-    gap: 2px;
+    border: none; 
 }
 
-.item > button > svg{
-    width: 15px;
-}
+
 
 .item:hover button{
   opacity: 1;
-   
     top: 75%;   
-    
 }
 
 
@@ -238,125 +231,84 @@ section > div::-webkit-scrollbar{
     font-weight: bold;
 }
 
-.modal{
-    display: none;
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 30px auto;
+    overflow: hidden;
     border-radius: 10px;
-    width: 45%;
-  height: 70%;
-  background-color: red;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 200%;
+}
+
+.slide {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.manual-navigation {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.manual-btn {
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.manual-btn:hover {
+    background-color: #555;
+}
+
+.modal{
+    display: block;
+    z-index: 1;
+    border-radius: 10px 10px 0px 0px;
+    width: 60%;
+  height: 600px;
+  background-color: white;
   position: fixed;
-  top: 50%;
+  top: 200%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.258), -5px 2px 10px rgba(0, 0, 0, 0.295);
+  transition: all 0.5s;
 }
 
-.slider{
-   width: 800px;
-   height: 400px;
-   overflow: hidden;
-   margin-bottom: 100px;
-}
-
-.slides{
-    
-    width: 400%;
-    height: 400px;
-    display: flex;
-}
-
-.slides > input{
-    display: none;
-}
-
-.slide{
-    width: 25%;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 1.5s;
-}
-
-.slide img{
-    width: 750px;
+.modal-header{
+    padding: 10px;
    
 }
 
-.manual-navigation{
-    position: absolute;
-    width: 800px;
-    margin-top: -40px;
-    display: flex;
-    justify-content: center;
-}
-
-.manual-btn{
-    border: 2px solid #000;
-    padding: 5px;
-    border-radius: 10px;
-    margin: 0 2px;
+.modal-header > span{
+    font-size: 45px;
+    font-weight: 400;
     cursor: pointer;
-    transition: all 0.2s;
 }
-
-.manual-btn:hover{
-    background: #fff;
-}
-
-
-#radio1:checked ~ .first{
-    margin-left: 0;
-}
-
-#radio2:checked ~ .first{
-    margin-left: -25%;
-}
-
-.navigation div{
-    border: 2px solid #15046c;
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
-    margin: 0 2px;
-}
-
-.navigation{
-    position: absolute;
-    width: 800px;
-    display: flex;
-    justify-content: center;
-   margin-top: 360px;   
-
-}
-.banners{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.banners > img{
-    width: 25%;
-    height: 385px;
-    box-shadow: -5px 10px 10px rgba(0, 0, 0, 0.155);
-}
-
-#radio1:checked ~ .navigation .btn1{
-    background-color: #15046c;
-    
-}
-
-#radio2:checked ~ .navigation .btn2{
-    background-color: #15046c;
-    
-}
-
 
 
 @media (max-width: 750px) {
-    .container{
-        margin-bottom: 0px;
-    }
+    
 
     .container > h1{
         font-size: 50px;
@@ -371,40 +323,14 @@ section > div::-webkit-scrollbar{
     }
 
 
-    .slider{
-        width: 95vw;
-        height: 300px;
-        margin-bottom: 150px;
-    }
-
-    .slide img{
-        width: 90%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .slider {
+        height: 220px;
     }
 
 
 }
 
-@media (max-width: 950px) {
-    .container > div:nth-child(2){
-        width: 35%;
-    }
 
-    .banners > img{
-        width: 400px;
-        display: none;
-    }
-}
-
-@media (min-width: 960px){
-    .items > button:hover {
-        box-shadow: 4px 5px 8px rgba(0, 0, 0, 0.385); 
-    }
-
-    
-}
 
 
 

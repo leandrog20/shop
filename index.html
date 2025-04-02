@@ -39,34 +39,31 @@
                      <p>Descubra os melhores tênis para todos os estilos e ocasiões. Aqui você encontra conforto, qualidade e design em um só lugar. Explore nossa coleção e dê o próximo passo com estilo!</p>
                      <button><a href="#shoes">Catalogo</a></button>
         </main>
-        <div class="banners">
-            <div class="slider">
-                <div class="slides">
-                    <input type="radio" name="radio-btn" id="radio1">
-                    <input type="radio" name="radio-btn" id="radio2">
-    
-                    <div class="slide first">
-                        <img src="img/banner 1.svg" alt="">
-                    </div>
-                    <div class="slide">
-                        <img src="img/banner 2.svg" alt="">
-                    </div>
-    
-                    <div class="navigation">
-                        <div class="btn1"></div>
-                        <div class="btn2"></div>
-                    </div>
+        <div class="slider">
+            <div class="slides">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <img src="img/banner 1.svg" alt="Banner 1">
                 </div>
-                <div class="manual-navigation">
-                    <label for="radio1" class="manual-btn"></label>
-                    <label for="radio2" class="manual-btn"></label>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="img/banner 2.svg" alt="Banner 2">
                 </div>
             </div>
-            <img src="img/banner 3.svg" alt="">
+            <!-- Navegação manual -->
+            <div class="manual-navigation">
+                <span class="manual-btn" onclick="showSlide(0)"></span>
+                <span class="manual-btn" onclick="showSlide(1)"></span>
+            </div>
         </div>
         
 
         <div class="modal">
+            <div class="modal-header">
+                <span class="material-symbols-outlined" onclick="fecharModal()">
+                    keyboard_backspace
+                    </span>
+            </div>
             <h1>oi
                 
             </h1>
