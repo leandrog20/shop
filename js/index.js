@@ -89,7 +89,7 @@ products.map( (element) => {
                     const button = document.createElement("button")
                     button.innerHTML = `Adicionar`
                     button.classList.add("add")
-                    button.setAttribute("onclick", "abrirModal(this)")
+                    button.setAttribute("onclick", "abrirModal()")
                     item.appendChild(img)
                     item.appendChild(button)
                     
@@ -251,13 +251,12 @@ function closeCart(){
 
 
     function adicionar(){
-       btn = document.getElementById("add")
+       btn = document.getElementsByClassName("add")
         for(let i = 0; i < btn.length; i++){
             btn[i].addEventListener("click", function(){
-                const id = this
-                console.log(id)
-                abrirModal(id)
-                console.log("click")
+                const id = btn[i].parentElement.getAttribute("data-key")
+
+               abrirModal(id)
             })
         }
     }
@@ -266,25 +265,37 @@ function closeCart(){
         const modal = document.querySelector(".modal")
        modal.style.top = "57%"
 
+          const product = products.filter(item => item.id == id)
 
-         const product = products.filter(item => item.id == id.parentElement.getAttribute("data-key"))
+          const name = document.querySelector(".modal-content > div > h2")
+          const price = document.querySelector(".modal-content > div > p")
+        const img = document.querySelector(".modal-content > img")
 
-         console.log(product[0].img)
-
-            const img = document.createElement("img")
-            img.setAttribute("src", `${product[0].img}`)
-
-            modal.appendChild(img)
+          name.innerHTML = product[0].name
+            price.innerHTML = product[0].price.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+            img.src = product[0].img
+            img.setAttribute("alt", product[0].name)
 
 
-console.log(img)
+
     }
 
     function fecharModal(){
         const modal = document.querySelector(".modal")
         modal.style.top = "200%"
-        modal.innerHTML = ""
-    } 
+    }
+
+    if(window.innerWidth <= 790){
+        const item = document.getElementsByClassName("item")
+       for(let i = 0; i < item.length; i++){
+            item[i].addEventListener("click", function(){
+                const id = item[i].getAttribute("data-key")
+                console.log(id)
+                abrirModal(id)
+                
+            })
+        }
+    }
     
     
 
