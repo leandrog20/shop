@@ -86,6 +86,7 @@ products.map( (element) => {
                     item.setAttribute("data-key", `${element.id}`)
                     const img = document.createElement("img")
                     img.setAttribute("src", `${element.img}`)
+                    img.className = "img"
                     const button = document.createElement("button")
                     button.innerHTML = `Adicionar`
                     button.classList.add("add")
@@ -285,11 +286,11 @@ function closeCart(){
         modal.style.top = "200%"
     }
 
-    if(window.innerWidth <= 790){
-        const item = document.getElementsByClassName("item")
+    if(window.innerWidth <= 808){
+        const item = document.getElementsByClassName("img")
        for(let i = 0; i < item.length; i++){
             item[i].addEventListener("click", function(){
-                const id = item[i].getAttribute("data-key")
+                const id = item[i].parentElement.getAttribute("data-key")
                 console.log(id)
                 abrirModal(id)
                 
