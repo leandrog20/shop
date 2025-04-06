@@ -26,42 +26,26 @@ const products = [
 ]
 
 class Product {
-    constructor(id, name, price, quantidy){
+    constructor(id, name, price, quantidy) {
         this.id = id
         this.name = name,
-        this.price = price,
-        this.quantidy = quantidy
-    }
-  
+            this.price = price,
+            this.quantidy = quantidy
     }
 
-// const result = (function calculateDiscount() {
-//     const discount = products.map(product => {
-
-//         let newValue = product.temDesconto ? product.preco * 0.9 : product.preco
-
-//         return {
-//             ...product, preco: newValue.toLocaleString("pt-br", { style: "currency", currency: "BRL"})
-//         }
-
-//     }, 0)
-
-//     return discount;
-// })()
-
+}
 
 let cart = []
 let brands = []
 
-
-function separateByBrand(){
+function separateByBrand() {
     products.forEach(element => {
-        if(!brands.includes(element.brand)){
+        if (!brands.includes(element.brand)) {
             brands.push(element.brand)
         }
     })
 
-    for(let i = 0; i < brands.length; i++){
+    for (let i = 0; i < brands.length; i++) {
         const body = document.querySelector("body")
         const section = document.createElement("section")
         const h2 = document.createElement("h2")
@@ -78,73 +62,72 @@ function separateByBrand(){
 
 separateByBrand()
 
+products.map((element) => {
 
-products.map( (element) => {
+    const item = document.createElement("div")
+    item.classList.add("item")
+    item.setAttribute("data-key", `${element.id}`)
+    const img = document.createElement("img")
+    img.setAttribute("src", `${element.img}`)
+    img.className = "img"
+    const button = document.createElement("button")
+    button.innerHTML = `Adicionar`
+    button.classList.add("add")
+    button.setAttribute("onclick", "abrirModal()")
+    item.appendChild(img)
+    item.appendChild(button)
 
-                    const item = document.createElement("div")
-                    item.classList.add("item")
-                    item.setAttribute("data-key", `${element.id}`)
-                    const img = document.createElement("img")
-                    img.setAttribute("src", `${element.img}`)
-                    img.className = "img"
-                    const button = document.createElement("button")
-                    button.innerHTML = `Adicionar`
-                    button.classList.add("add")
-                    button.setAttribute("onclick", "abrirModal()")
-                    item.appendChild(img)
-                    item.appendChild(button)
-                    
     const sections = document.querySelectorAll("section")
 
-    for(let i = 0; i < sections.length; i++){
+    for (let i = 0; i < sections.length; i++) {
         let id = sections[i].getAttribute("data-key")
-        if(element.brand == id){
-          
+        if (element.brand == id) {
+
             sections[i].children[1].appendChild(item)
         }
     }
 
 })
-   
-function buttonsAdd(){
+
+function buttonsAdd() {
     const buttons = document.getElementsByClassName("add")
 
-    for(let i in buttons){
+    for (let i in buttons) {
         buttons[i].addEventListener("click", (e) => {
             const buttonParentElement = e.target.parentElement
             let id = buttonParentElement.getAttribute("data-key")
-            
-             addToCart(id)
-             updateTotalValueCart()
+
+            addToCart(id)
+            updateTotalValueCart()
         })
     }
 }
 
-function addToCart(id){
-            
-        const checkTheIdExistence = cart.findIndex(item => item.id == id)
-    
-        if(checkTheIdExistence == -1){
+function addToCart(id) {
+
+    const checkTheIdExistence = cart.findIndex(item => item.id == id)
+
+    if (checkTheIdExistence == -1) {
         const product = products.filter(item => item.id == id)
-            const produto = new Product(product[0].id, product[0].name, product[0].price, 1)
+        const produto = new Product(product[0].id, product[0].name, product[0].price, 1)
 
-    cart.push(produto)
+        cart.push(produto)
 
-        } else {
-              cart.forEach(item => item.id == id ? item.quantidy += 1 : item.quantidy = item.quantidy)
-        }
+    } else {
+        cart.forEach(item => item.id == id ? item.quantidy += 1 : item.quantidy = item.quantidy)
+    }
 
-        addToCartScreen()
-          
+    addToCartScreen()
+
 }
 
-function addToCartScreen(){
-   
+function addToCartScreen() {
+
     let htmlOfProducts = ''
 
     cart.map(itemCart => {
         let product = products.filter(productArrItem => productArrItem.id == itemCart.id)
-        const formattedPrice = itemCart.price.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+        const formattedPrice = itemCart.price.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
 
         htmlOfProducts += `<div class="cart-product" data-key="${itemCart.id}">
         <img src="${product[0].img}"/>
@@ -162,148 +145,141 @@ function addToCartScreen(){
     })
 
     document.querySelector(".container-product").innerHTML = htmlOfProducts
-        
+}
+
+function moreButton(e) {
+    let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
+    console.log(elementId)
+    let quantidy = e.parentElement.querySelector("p")
+    quantidy.innerHTML++
+
+    addToCart(elementId) // aumenta a quantidade do item chamando a função addToCart()
+    updateTotalValueCart()
+
+}
+
+function minusButton(e) {
+    let quantidy = e.parentElement.querySelector("p")
+    console.log(quantidy)
+    let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
+
+    quantidy.innerHTML--
+
+    // diminui a quantidade do item no array
+    let item = cart.find(item => item.id == elementId)
+    item.quantidy -= 1
+
+    updateTotalValueCart()
+    removeToCart()
+    closeCartWhenThereAreNoItems()
+}
+
+function updateTotalValueCart() {
+
+    const totalCartValue = cart.reduce((acumulador, item) => {
+        return acumulador += (item.price * item.quantidy)
+    }, 0)
+
+    document.querySelector(".cart-total").innerHTML = totalCartValue.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
+}
+
+function removeToCart() {
+
+    let newCart = cart.filter(item => item.quantidy !== 0)
+
+    cart = newCart
+
+    addToCartScreen()
+
+}
+
+function closeCartWhenThereAreNoItems() {
+
+    if (cart.length == 0) {
+        closeCart()
     }
-
-    function moreButton(e){
-        let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
-        console.log(elementId)
-        let quantidy = e.parentElement.querySelector("p")
-        quantidy.innerHTML++
-
-        addToCart(elementId) // aumenta a quantidade do item chamando a função addToCart()
-        updateTotalValueCart()
-       
-    }
-
-    function minusButton(e){
-        let quantidy = e.parentElement.querySelector("p")
-        console.log(quantidy)
-        let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
-        
-             quantidy.innerHTML--
-
-            // diminui a quantidade do item no array
-            let item = cart.find(item => item.id == elementId) 
-            item.quantidy -= 1
-        
-        updateTotalValueCart()
-        removeToCart()
-        closeCartWhenThereAreNoItems()
-    }
-
-    function updateTotalValueCart(){
-            
-        const totalCartValue = cart.reduce( (acumulador, item) => {
-            return acumulador += (item.price * item.quantidy)
-        }, 0)
-     
-        document.querySelector(".cart-total").innerHTML =  totalCartValue.toLocaleString("pt-br", {style: "currency", currency: "BRL"})    
-    }
-
-    function removeToCart(){
-
-         let newCart = cart.filter(item => item.quantidy !== 0)
-         
-         cart = newCart
-           
-           addToCartScreen()
-        
-    }
-
-    function closeCartWhenThereAreNoItems(){
-
-        if(cart.length == 0){
-            closeCart() 
-        }
-    }
+}
 
 const cartButton = document.querySelector(".cart")
 
-function openCart(){
-    if(window.innerWidth <= 750){
-        cartButton.style.width = "100%" 
+function openCart() {
+    if (window.innerWidth <= 750) {
+        cartButton.style.width = "100%"
     } else {
-    cartButton.style.width = "550px"
+        cartButton.style.width = "550px"
     }
 }
 
 
-function closeCart(){
+function closeCart() {
     cartButton.style.width = "0px"
 }
 
 
-function controlSlider(){
+function controlSlider() {
     const slider = document.querySelector(".slider")
     const left = document.querySelector("#previousSlide")
     const right = document.querySelector("#nextSlide")
 
-    const { width: sliderWidth} = window.getComputedStyle(slider)
+    const { width: sliderWidth } = window.getComputedStyle(slider)
 
-    left.addEventListener("click", function(){
+    left.addEventListener("click", function () {
         slider.scrollLeft -= parseInt(sliderWidth)
     })
 
-    right.addEventListener("click", function(){
+    right.addEventListener("click", function () {
         slider.scrollLeft += parseInt(sliderWidth)
     })
 }
 
 controlSlider()
 
-    function adicionar(){
-       btn = document.getElementsByClassName("add")
-        for(let i = 0; i < btn.length; i++){
-            btn[i].addEventListener("click", function(){
-                const id = btn[i].parentElement.getAttribute("data-key")
+function adicionar() {
+    btn = document.getElementsByClassName("add")
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].addEventListener("click", function () {
+            const id = btn[i].parentElement.getAttribute("data-key")
 
-               abrirModal(id)
-            })
-        }
+            abrirModal(id)
+        })
     }
+}
 
-    function abrirModal(id){
-        const modal = document.querySelector(".modal")
-       modal.style.top = "57%"
+function abrirModal(id) {
+    const modal = document.querySelector(".modal")
+    modal.style.top = "57%"
 
-          const product = products.filter(item => item.id == id)
+    const product = products.filter(item => item.id == id)
 
-          const name = document.querySelector(".modal-content > div > h2")
-          const price = document.querySelector(".modal-content > div > p")
-        const img = document.querySelector(".modal-content > img")
+    const name = document.querySelector(".modal-content > div > h2")
+    const price = document.querySelector(".modal-content > div > p")
+    const img = document.querySelector(".modal-content > img")
 
-          name.innerHTML = product[0].name
-            price.innerHTML = product[0].price.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
-            img.src = product[0].img
-            img.setAttribute("alt", product[0].name)
+    name.innerHTML = product[0].name
+    price.innerHTML = product[0].price.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
+    img.src = product[0].img
+    img.setAttribute("alt", product[0].name)
+}
 
+function fecharModal() {
+    const modal = document.querySelector(".modal")
+    modal.style.top = "200%"
+}
 
+if (window.innerWidth <= 808) {
+    const item = document.getElementsByClassName("img")
+    for (let i = 0; i < item.length; i++) {
+        item[i].addEventListener("click", function () {
+            const id = item[i].parentElement.getAttribute("data-key")
+            console.log(id)
+            abrirModal(id)
 
+        })
     }
-
-    function fecharModal(){
-        const modal = document.querySelector(".modal")
-        modal.style.top = "200%"
-    }
-
-    if(window.innerWidth <= 808){
-        const item = document.getElementsByClassName("img")
-       for(let i = 0; i < item.length; i++){
-            item[i].addEventListener("click", function(){
-                const id = item[i].parentElement.getAttribute("data-key")
-                console.log(id)
-                abrirModal(id)
-                
-            })
-        }
-    }
-    
-    
+}
 
 adicionar()
 buttonsAdd()
-
 
 
 

@@ -21,52 +21,57 @@ body {
     font-family: 'poppins', sans-serif;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
-header > img {
+header>img {
     width: 90px;
-} 
+}
 
-header, .menu, section > div, .items, .cart{
+header,
+.menu,
+section>div,
+.items,
+.cart {
     display: flex;
 }
 
-button, a {
+button,
+a {
     cursor: pointer;
 }
 
 header {
     gap: 50px;
     max-height: 60px;
-   background-color: transparent;
-   position: fixed;
+    background-color: transparent;
+    position: fixed;
     width: 100%;
     background-color: white;
     z-index: 1;
 }
 
-header a{
+header a {
     color: black;
 }
 
-.menu{
+.menu {
     align-items: center;
     gap: 30px;
 }
 
-.menu > button{
-   background-color: transparent;
-    border: none;
-}
-
-.cart-icon > button{
+.menu>button {
     background-color: transparent;
     border: none;
 }
 
-.container{
+.cart-icon>button {
+    background-color: transparent;
+    border: none;
+}
+
+.container {
     height: 100vh;
     background-image: url(../img/imagem\ de\ fundo\ desktop.svg);
     background-repeat: no-repeat;
@@ -79,36 +84,35 @@ header a{
     flex-direction: column;
     text-align: justify;
     margin-bottom: 20px;
-    box-shadow: -5px 10px 20px #345ca046; 
+    box-shadow: -5px 10px 20px #345ca046;
 }
 
-.container > h1{
+.container>h1 {
     text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.229);
 }
 
-.container > p{
+.container>p {
     width: 400px;
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.container > img{
+.container>img {
     width: 200px;
 }
 
 
 
-.container > a{
+.container>a {
     background-color: #15046c;
     width: 200px;
     padding: 10px 20px;
     border-radius: 20px;
     color: white;
     text-align: center
-
 }
 
-.container > h1{
+.container>h1 {
     font-family: "Inter", sans-serif;
     font-weight: 900;
     font-style: italic;
@@ -122,37 +126,37 @@ header a{
 
 
 
-section > h2{
-    
+section>h2 {
+
     text-indent: 50px;
-   
+
 }
 
-section > div{
+section>div {
     gap: 30px;
     cursor: pointer;
     overflow: scroll;
     margin-left: 20px;
 }
 
-section > div::-webkit-scrollbar{
+section>div::-webkit-scrollbar {
     scroll-padding: 0px;
 }
 
-.item{
+.item {
     display: flex;
     justify-content: center;
     position: relative;
     padding: 10px;
 }
 
-.item > img{
-   height: 150px;
-   width: 120px;
-   object-fit: contain;
+.item>img {
+    height: 150px;
+    width: 120px;
+    object-fit: contain;
 }
 
-.item > button{
+.item>button {
     padding: 5px 15px;
     position: absolute;
     top: 80%;
@@ -160,11 +164,11 @@ section > div::-webkit-scrollbar{
     display: flex;
     opacity: 0;
     border-radius: 20px;
-    border: none; 
+    border: none;
 }
 
 
-.cart{
+.cart {
     position: fixed;
     width: 0%;
     background-color: white;
@@ -178,11 +182,11 @@ section > div::-webkit-scrollbar{
     z-index: 1;
 }
 
-.cart::-webkit-scrollbar{
+.cart::-webkit-scrollbar {
     scroll-padding: 0px;
 }
 
-.cart > .total > button{
+.cart>.total>button {
     background-color: #15046c;
     padding: 5px 50px;
     border-radius: 20px;
@@ -190,37 +194,37 @@ section > div::-webkit-scrollbar{
     color: white;
 }
 
-.cart > .total{
+.cart>.total {
     margin: 0 auto;
     display: flex;
     gap: 60px;
 }
 
-.cart-product{
+.cart-product {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
 }
 
-.cart-product > div{
+.cart-product>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
 }
 
-.cart-product > img{
+.cart-product>img {
     width: 120px;
 }
 
 
 
-.btn-qtd{
+.btn-qtd {
     display: flex;
     gap: 10px;
 }
 
-.btn-qtd button{
+.btn-qtd button {
     border-radius: 5px;
     border: none;
     width: 40px;
@@ -228,14 +232,14 @@ section > div::-webkit-scrollbar{
     font-weight: bold;
 }
 
-.slide{
+.slide {
     position: relative;
-   width: 90%;
-   margin: auto;
-   margin-bottom: 90px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 90px;
 }
 
-.slider{
+.slider {
     margin: auto;
     overflow-x: hidden;
     width: 90%;
@@ -243,18 +247,19 @@ section > div::-webkit-scrollbar{
     scroll-behavior: smooth;
 }
 
-.content{
+.content {
     display: flex;
     width: fit-content;
 }
 
-.content > img{
+.content>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-#previousSlide, #nextSlide{
+#previousSlide,
+#nextSlide {
     position: absolute;
     border: none;
     border-radius: 50%;
@@ -266,160 +271,151 @@ section > div::-webkit-scrollbar{
     box-shadow: 5px 5px 10px #15046c3c;
 }
 
-#previousSlide{
+#previousSlide {
     left: 3%;
 }
 
-#nextSlide{
+#nextSlide {
     right: 3%;
 }
 
 
-.modal{
+.modal {
     display: block;
     z-index: 1;
     border-radius: 10px 10px 0px 0px;
     width: 600px;
-  height: 600px;
-  background-color: white;
-  position: fixed;
-  top: 200%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.258), -5px 2px 10px rgba(0, 0, 0, 0.295);
-  transition: all 0.5s;
+    height: 600px;
+    background-color: white;
+    position: fixed;
+    top: 200%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.258), -5px 2px 10px rgba(0, 0, 0, 0.295);
+    transition: all 0.5s;
 }
 
-.modal-header{
+.modal-header {
     padding: 10px;
-   
+
 }
 
-.modal-header > span{
+.modal-header>span {
     font-size: 45px;
     font-weight: 400;
     cursor: pointer;
 }
 
-.modal-content{
+.modal-content {
     display: flex;
 }
 
-.modal-content > img{
+.modal-content>img {
     width: 300px;
     height: 300px;
     object-fit: contain;
 }
 
-.modal-content > div > h2{
+.modal-content>div>h2 {
     margin-bottom: 10px;
 }
 
-.size{
+.size {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.size-options{
+.size-options {
     display: flex;
     gap: 10px;
 }
 
-.size-options > button{
+.size-options>button {
     border-radius: 5px;
     border: none;
     font-weight: bold;
     padding: 15px;
-    
-}   
 
-.modal > .modal-footer{
+}
+
+.modal>.modal-footer {
     margin-top: 30px;
     display: flex;
     justify-content: center;
 }
 
-.modal > .modal-footer > button{
+.modal>.modal-footer>button {
     background-color: #15046c;
     padding: 15px 50px;
     border-radius: 20px;
     border: none;
     color: white;
 }
-    
+
 
 @media (min-width: 769px) and (min-width: 1024px) {
-    .item:hover button{
+    .item:hover button {
         opacity: 1;
-          top: 75%;   
-      }
+        top: 75%;
+    }
 
-      .manual-btn:hover {
+    .manual-btn:hover {
         background-color: #555;
     }
-    
+
 }
 
 @media (max-width: 768px) {
-    
-    header{
+
+    header {
         gap: 20px;
     }
 
-    .container{
-       text-align: justify;
-       margin: 0 auto;
+    .container {
+        text-align: justify;
+        margin: 0 auto;
         background-image: url(../img/imagem\ de\ fundo\ mobile\(360\ x\ 640\ px\).svg);
-       margin-bottom: 15px;
+        margin-bottom: 15px;
     }
 
-    .container > h1{
+    .container>h1 {
         font-size: 50px;
     }
 
-    .container *{
+    .container * {
         margin-left: 20px;
     }
 
-    .container > p{
+    .container>p {
         width: 80%;
     }
 
-    .modal{
+    .modal {
         width: 100%;
         border-radius: 0px;
     }
 
-    .modal-content > img{
+    .modal-content>img {
         width: 50%;
     }
 
-    .slider{
+    .slider {
         width: 100%;
         margin-bottom: 45px;
     }
-    .slide{
+
+    .slide {
         width: 100%;
     }
 
-    #previousSlide{
+    #previousSlide {
         left: 0;
     }
-    
-    #nextSlide{
-       right: 0; 
+
+    #nextSlide {
+        right: 0;
     }
 
 }
-
-
-
-
-
-
-
-
-
-

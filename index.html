@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <title>Document</title>
 </head>
 
@@ -16,7 +16,7 @@
         <nav class="menu">
             <div class="cart-icon" onclick="openCart()">
                 <button class="cart-btn"><span class="material-symbols-outlined">
-                    shopping_bag
+                        shopping_bag
                     </span></button>
             </div>
             <a href="#">Entrar</a>
@@ -24,76 +24,75 @@
         </nav>
     </header>
 
-        <aside class="cart">
-            
-            <div class="container-product"></div>
-            <div class="total">
-                    <p class="cart-total">0,00</p>
-                <button class="finalizar" onclick="verify()">finalizar</button>
+    <aside class="cart">
+
+        <div class="container-product"></div>
+        <div class="total">
+            <p class="cart-total">0,00</p>
+            <button class="finalizar" onclick="verify()">finalizar</button>
+        </div>
+    </aside>
+    <main class="container" onclick="closeCart()">
+
+        <h1>Stride Store</h1>
+
+        <p>Descubra os melhores tênis para todos os estilos e ocasiões. Aqui você encontra conforto, qualidade e design
+            em um só lugar. Explore nossa coleção e dê o próximo passo com estilo!</p>
+        <a href="#shoes">Catalogo</a>
+    </main>
+    <div class="slide">
+        <div class="slider">
+            <div class="content">
+                <img src="img/banner 1.svg" alt="">
+                <img src="img/banner 2.svg" alt="">
+                <img src="img/banner 3.svg" alt="">
             </div>
-        </aside>
-        <main class="container" onclick="closeCart()">
-            
-                     <h1>Stride Store</h1>
-                     
-                     <p>Descubra os melhores tênis para todos os estilos e ocasiões. Aqui você encontra conforto, qualidade e design em um só lugar. Explore nossa coleção e dê o próximo passo com estilo!</p>
-                     <a href="#shoes">Catalogo</a>
-        </main>
-        <div class="slide">
-            <div class="slider">
-                <div class="content">
-                    <img src="img/banner 1.svg" alt="">
-                    <img src="img/banner 2.svg" alt="">
-                    <img src="img/banner 3.svg" alt="">
-                </div>
-            </div>
-            <button id="previousSlide"><span class="material-symbols-outlined">
+        </div>
+        <button id="previousSlide"><span class="material-symbols-outlined">
                 arrow_back
-                </span></button>
-            <button id="nextSlide"><span class="material-symbols-outlined">
+            </span></button>
+        <button id="nextSlide"><span class="material-symbols-outlined">
                 arrow_forward
-                </span></button>
-        </div>
-        
-       
-        
+            </span></button>
+    </div>
 
-        <div class="modal">
-            <div class="modal-header">
-                <span class="material-symbols-outlined" onclick="fecharModal()">
-                    keyboard_backspace
-                    </span>
+
+    <div class="modal">
+        <div class="modal-header">
+            <span class="material-symbols-outlined" onclick="fecharModal()">
+                keyboard_backspace
+            </span>
+        </div>
+        <div class="modal-content">
+            <img src="img/air force 1 .webp" alt="Shoe">
+            <div>
+                <h2>Nome do Produto</h2>
+                <p class="price">R$ 199,99</p>
             </div>
-                <div class="modal-content">
-                    <img src="img/air force 1 .webp" alt="Shoe">
-                    <div>
-                        <h2>Nome do Produto</h2>
-                    <p class="price">R$ 199,99</p>
-                    </div>
-                    
-                </div>
 
-                <div class="size">
-                    <h3>Tamanhos</h3>
-                    <div class="size-options">
-                        <button class="size-option" onclick="selectSize('38')">38</button>
-                        <button class="size-option" onclick="selectSize('39')">39</button>
-                        <button class="size-option" onclick="selectSize('40')">40</button>
-                        <button class="size-option" onclick="selectSize('41')">41</button>
-                        <button class="size-option" onclick="selectSize('42')">42</button>
-                        <button class="size-option" onclick="selectSize('43')">43</button>
-                        <button class="size-option" onclick="selectSize('44')">44</button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="add-to-cart" onclick="addToCart()">Adicionar ao Carrinho</button>
-                </div>
-            </main>
         </div>
-        
-    <script  src="js/dragscroll.js"></script>
-    <script async src="js/index.js"></script>
-       
+
+        <div class="size">
+            <h3>Tamanhos</h3>
+            <div class="size-options">
+                <button class="size-option" onclick="selectSize('38')">38</button>
+                <button class="size-option" onclick="selectSize('39')">39</button>
+                <button class="size-option" onclick="selectSize('40')">40</button>
+                <button class="size-option" onclick="selectSize('41')">41</button>
+                <button class="size-option" onclick="selectSize('42')">42</button>
+                <button class="size-option" onclick="selectSize('43')">43</button>
+                <button class="size-option" onclick="selectSize('44')">44</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="add-to-cart" onclick="addToCart()">Adicionar ao Carrinho</button>
+        </div>
+        </main>
+    </div>
+
+    <script src="js/dragscroll.js"></script>
+    <script src="js/index.js"></script>
+
 </body>
 
 </html>
