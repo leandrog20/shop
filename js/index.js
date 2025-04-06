@@ -234,22 +234,23 @@ function closeCart(){
 }
 
 
+function controlSlider(){
+    const slider = document.querySelector(".slider")
+    const left = document.querySelector("#previousSlide")
+    const right = document.querySelector("#nextSlide")
 
-    let currentSlide = 0;
+    const { width: sliderWidth} = window.getComputedStyle(slider)
 
-    function showSlide(index) {
-        const slides = document.querySelector('.slides');
-        currentSlide = index;
-        slides.style.transform = `translateX(-${index * 100}%)`;
-    }
+    left.addEventListener("click", function(){
+        slider.scrollLeft -= parseInt(sliderWidth)
+    })
 
-    // Alterna automaticamente entre os slides a cada 5 segundos
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % 2; // 2 é o número de slides
-        showSlide(currentSlide);
-    }, 2000);
+    right.addEventListener("click", function(){
+        slider.scrollLeft += parseInt(sliderWidth)
+    })
+}
 
-
+controlSlider()
 
     function adicionar(){
        btn = document.getElementsByClassName("add")

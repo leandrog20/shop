@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <img src="img/logo.svg" alt="logo">
+        <img src="img/stride Strore.svg" alt="logo">
         <nav class="menu">
             <div class="cart-icon" onclick="openCart()">
                 <button class="cart-btn"><span class="material-symbols-outlined">
@@ -39,23 +39,23 @@
                      <p>Descubra os melhores tênis para todos os estilos e ocasiões. Aqui você encontra conforto, qualidade e design em um só lugar. Explore nossa coleção e dê o próximo passo com estilo!</p>
                      <a href="#shoes">Catalogo</a>
         </main>
-        <div class="slider">
-            <div class="slides">
-                <!-- Slide 1 -->
-                <div class="slide">
-                    <img src="img/banner 1.svg" alt="Banner 1">
-                </div>
-                <!-- Slide 2 -->
-                <div class="slide">
-                    <img src="img/banner 2.svg" alt="Banner 2">
+        <div class="slide">
+            <div class="slider">
+                <div class="content">
+                    <img src="img/banner 1.svg" alt="">
+                    <img src="img/banner 2.svg" alt="">
+                    <img src="img/banner 3.svg" alt="">
                 </div>
             </div>
-            <!-- Navegação manual -->
-            <div class="manual-navigation">
-                <span class="manual-btn" onclick="showSlide(0)"></span>
-                <span class="manual-btn" onclick="showSlide(1)"></span>
-            </div>
+            <button id="previousSlide"><span class="material-symbols-outlined">
+                arrow_back
+                </span></button>
+            <button id="nextSlide"><span class="material-symbols-outlined">
+                arrow_forward
+                </span></button>
         </div>
+        
+       
         
 
         <div class="modal">
@@ -91,8 +91,8 @@
             </main>
         </div>
         
-    <script src="js/dragscroll.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/dragscroll.js" defer></script>
+    <script src="js/index.js" defer></script>
        
 </body>
 
