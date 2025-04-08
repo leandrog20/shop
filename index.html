@@ -23,15 +23,6 @@
             <a href="#">Fale conosco!</a>
         </nav>
     </header>
-
-    <aside class="cart">
-
-        <div class="container-product"></div>
-        <div class="total">
-            <p class="cart-total">0,00</p>
-            <button class="finalizar" onclick="verify()">finalizar</button>
-        </div>
-    </aside>
     <main class="container" onclick="closeCart()">
 
         <h1>Stride Store</h1>
@@ -43,9 +34,9 @@
     <div class="slide">
         <div class="slider">
             <div class="content">
-                <img src="img/banner 1.svg" alt="">
-                <img src="img/banner 2.svg" alt="">
-                <img src="img/banner 3.svg" alt="">
+                <img src="img/banner.webp" alt="">
+                <img src="img/banner 2.webp" alt="">
+                <img src="img/banner 3.webp" alt="">
             </div>
         </div>
         <button id="previousSlide"><span class="material-symbols-outlined">
@@ -59,7 +50,7 @@
 
     <div class="modal">
         <div class="modal-header">
-            <span class="material-symbols-outlined" onclick="fecharModal()">
+            <span class="material-symbols-outlined" onclick="closeModal()">
                 keyboard_backspace
             </span>
         </div>
@@ -85,10 +76,18 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="add-to-cart" onclick="addToCart()">Adicionar ao Carrinho</button>
+            <button class="add-to-cart">Adicionar ao Carrinho</button>
         </div>
         </main>
     </div>
+    <aside class="cart">
+
+        <div class="container-product"></div>
+        <div class="total">
+            <p class="cart-total">0,00</p>
+            <button class="finalizar" onclick="verify()">finalizar</button>
+        </div>
+    </aside>
 
     <script src="js/dragscroll.js"></script>
     <script src="js/index.js"></script>

@@ -26,11 +26,13 @@ const products = [
 ]
 
 class Product {
-    constructor(id, name, price, quantidy) {
+    constructor(id, name, price, quantidy, size) {
         this.id = id
         this.name = name,
             this.price = price,
-            this.quantidy = quantidy
+            this.quantidy = quantidy,
+            this.size = size
+
     }
 
 }
@@ -73,7 +75,7 @@ products.map((element) => {
     const button = document.createElement("button")
     button.innerHTML = `Adicionar`
     button.classList.add("add")
-    button.setAttribute("onclick", "abrirModal()")
+    button.setAttribute("onclick", "openModal()")
     item.appendChild(img)
     item.appendChild(button)
 
@@ -103,18 +105,18 @@ function buttonsAdd() {
     }
 }
 
-function addToCart(id) {
+function addToCart(id, size) {
 
-    const checkTheIdExistence = cart.findIndex(item => item.id == id)
+    const checkTheIdExistence = cart.findIndex(item => item.id == id && item.size == size)
 
     if (checkTheIdExistence == -1) {
         const product = products.filter(item => item.id == id)
-        const produto = new Product(product[0].id, product[0].name, product[0].price, 1)
+        const produto = new Product(product[0].id, product[0].name, product[0].price, 1, size)
 
         cart.push(produto)
 
     } else {
-        cart.forEach(item => item.id == id ? item.quantidy += 1 : item.quantidy = item.quantidy)
+        cart.forEach(item => item.id == id && item.size == size ? item.quantidy += 1 : item.quantidy = item.quantidy)
     }
 
     addToCartScreen()
@@ -228,27 +230,28 @@ function controlSlider() {
     })
 
     right.addEventListener("click", function () {
-        slider.scrollLeft += parseInt(sliderWidth)
+        slider.scrollLeft += parseInt(sliderWidth) + 0.1
     })
 }
 
 controlSlider()
 
-function adicionar() {
+function add() {
     btn = document.getElementsByClassName("add")
     for (let i = 0; i < btn.length; i++) {
         btn[i].addEventListener("click", function () {
             const id = btn[i].parentElement.getAttribute("data-key")
 
-            abrirModal(id)
+            openModal(id)
         })
     }
 }
 
-function abrirModal(id) {
-    const modal = document.querySelector(".modal")
-    modal.style.top = "57%"
+const modal = document.querySelector(".modal")
 
+function openModal(id) {
+     modal.id = "active"
+     modal.setAttribute("data-key", `${id}`)
     const product = products.filter(item => item.id == id)
 
     const name = document.querySelector(".modal-content > div > h2")
@@ -261,9 +264,8 @@ function abrirModal(id) {
     img.setAttribute("alt", product[0].name)
 }
 
-function fecharModal() {
-    const modal = document.querySelector(".modal")
-    modal.style.top = "200%"
+function closeModal() {
+    modal.id = ""
 }
 
 if (window.innerWidth <= 808) {
@@ -271,14 +273,32 @@ if (window.innerWidth <= 808) {
     for (let i = 0; i < item.length; i++) {
         item[i].addEventListener("click", function () {
             const id = item[i].parentElement.getAttribute("data-key")
-            console.log(id)
-            abrirModal(id)
+            openModal(id)
 
         })
     }
 }
 
-adicionar()
+let shoeSize = undefined
+
+function selectSize(size){
+       shoeSize = size
+}
+
+    const buttonAddToCart = document.querySelector(".add-to-cart")
+    buttonAddToCart.addEventListener("click", function () {
+        if(shoeSize != undefined){
+           const id = modal.getAttribute("data-key")
+           console.log(id)
+        addToCart(id, shoeSize)
+        updateTotalValueCart()
+        closeModal()
+
+        shoeSize = undefined
+        
+    })
+
+add()
 buttonsAdd()
 
 

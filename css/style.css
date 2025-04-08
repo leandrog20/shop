@@ -45,11 +45,11 @@ a {
 header {
     gap: 50px;
     max-height: 60px;
-    background-color: transparent;
     position: fixed;
-    width: 100%;
+    width: 100vw;
     background-color: white;
     z-index: 1;
+    
 }
 
 header a {
@@ -73,7 +73,9 @@ header a {
 
 .container {
     height: 100vh;
-    background-image: url(../img/imagem\ de\ fundo\ desktop.svg);
+    width: 100%;
+    background-color: #15046c;
+    background-image: url(../img/imagem-de-fundo-desktop-_2_.webp);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom right;
@@ -83,7 +85,7 @@ header a {
     justify-content: center;
     flex-direction: column;
     text-align: justify;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
     box-shadow: -5px 10px 20px #345ca046;
 }
 
@@ -234,7 +236,7 @@ section>div::-webkit-scrollbar {
 
 .slide {
     position: relative;
-    width: 90%;
+    width: 89%;
     margin: auto;
     margin-bottom: 90px;
 }
@@ -281,7 +283,6 @@ section>div::-webkit-scrollbar {
 
 
 .modal {
-    display: block;
     z-index: 1;
     border-radius: 10px 10px 0px 0px;
     width: 600px;
@@ -307,7 +308,7 @@ section>div::-webkit-scrollbar {
 }
 
 .modal-content {
-    display: flex;
+    display: flex;;
 }
 
 .modal-content>img {
@@ -324,12 +325,14 @@ section>div::-webkit-scrollbar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .size-options {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .size-options>button {
@@ -337,11 +340,16 @@ section>div::-webkit-scrollbar {
     border: none;
     font-weight: bold;
     padding: 15px;
+    transition: all 0.2s ease-in-out;
+}
 
+.size-options>button:focus{
+    background-color: #15046c;
+    color: white;
 }
 
 .modal>.modal-footer {
-    margin-top: 30px;
+    margin-top: 35px;
     display: flex;
     justify-content: center;
 }
@@ -352,6 +360,11 @@ section>div::-webkit-scrollbar {
     border-radius: 20px;
     border: none;
     color: white;
+    
+}
+
+#active{
+    top: 57%;
 }
 
 
@@ -376,8 +389,8 @@ section>div::-webkit-scrollbar {
     .container {
         text-align: justify;
         margin: 0 auto;
-        background-image: url(../img/imagem\ de\ fundo\ mobile\(360\ x\ 640\ px\).svg);
-        margin-bottom: 15px;
+        background-image: url(../img/imagem-de-fundo-mobile-_1_.webp);
+        margin-bottom: 55px;
     }
 
     .container>h1 {
@@ -402,8 +415,8 @@ section>div::-webkit-scrollbar {
     }
 
     .slider {
-        width: 100%;
-        margin-bottom: 45px;
+        width: 99%;
+        margin-bottom: 40px;
     }
 
     .slide {
@@ -418,4 +431,15 @@ section>div::-webkit-scrollbar {
         right: 0;
     }
 
+    #active{
+        top: 60%;
+    }
+
 }
+
+@media (max-width: 650px) {
+      .modal{
+          height: 750px;
+      }
+}
+
