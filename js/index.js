@@ -293,7 +293,7 @@ function selectSize(size){
         addToCart(id, shoeSize)
         updateTotalValueCart()
         closeModal()
-
+        }
         shoeSize = undefined
         
     })
