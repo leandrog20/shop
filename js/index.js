@@ -32,7 +32,6 @@ class Product {
             this.price = price,
             this.quantidy = quantidy,
             this.size = size
-
     }
 
 }
@@ -67,14 +66,14 @@ separateByBrand()
 products.map((element) => {
 
     const item = document.createElement("div")
-    item.classList.add("item")
+    item.className = "item"
     item.setAttribute("data-key", `${element.id}`)
     const img = document.createElement("img")
     img.setAttribute("src", `${element.img}`)
     img.className = "img"
     const button = document.createElement("button")
     button.innerHTML = `Adicionar`
-    button.classList.add("add")
+    button.className = "add"
     button.setAttribute("onclick", "openModal()")
     item.appendChild(img)
     item.appendChild(button)
@@ -107,73 +106,94 @@ function buttonsAdd() {
 
 function addToCart(id, size) {
 
-    const checkTheIdExistence = cart.findIndex(item => item.id == id && item.size == size)
-
-    if (checkTheIdExistence == -1) {
+    const checkTheIdExistence = cart.filter(item => item.id == id && item.size == size)
+console.log(checkTheIdExistence.length)
+if(size != undefined) {
+    if (checkTheIdExistence.length == 0) {
         const product = products.filter(item => item.id == id)
         const produto = new Product(product[0].id, product[0].name, product[0].price, 1, size)
-
+        console.log(produto)
         cart.push(produto)
 
     } else {
-        cart.forEach(item => item.id == id && item.size == size ? item.quantidy += 1 : item.quantidy = item.quantidy)
+        cart.filter(item => item.id == id && item.size == size ? item.quantidy += 1 : item.quantidy = item.quantidy)
     }
-
+}
     addToCartScreen()
 
 }
 
 function addToCartScreen() {
-
-    let htmlOfProducts = ''
-
-    cart.map(itemCart => {
+let elements = ""
+    cart.forEach(itemCart => {
         let product = products.filter(productArrItem => productArrItem.id == itemCart.id)
         const formattedPrice = itemCart.price.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
 
-        htmlOfProducts += `<div class="cart-product" data-key="${itemCart.id}">
-        <img src="${product[0].img}"/>
+        elements += `<div class="cart-product" data-key="${itemCart.id}">
         <div>
+            <img class="img-product" src="${product[0].img}"/>
          <p>${itemCart.name}</p>
-        
-        <span class="btn-qtd">
-                <button onclick="moreButton(this)">+</button>
-                <p>${itemCart.quantidy}</p>
-                <button onclick="minusButton(this)">-</button>
-            </span>
-              <p>${formattedPrice}</p>
         </div>
+                    <div class="quantidy-control">
+                            <button class="quantity-btn increase" onclick="increaseButton(this)">+</button>
+                            <p class="quantidy">${itemCart.quantidy}</p>
+                            <button class="quantity-btn decrease" onclick="decreaseButton(this)">-</button>
+                        </div>
+
+                <p>${itemCart.size}</p>
+                 <p class="productValue">${formattedPrice}</p>
+             
         </div>`
     })
 
-    document.querySelector(".container-product").innerHTML = htmlOfProducts
+    // document.querySelector(".cart-content").appendChild(cartProduct)
+    document.querySelector(".cart-content").innerHTML = elements
 }
 
-function moreButton(e) {
-    let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
-    console.log(elementId)
+function increaseButton(e) {
+    let elementId = e.parentElement.parentElement.getAttribute("data-key")
     let quantidy = e.parentElement.querySelector("p")
     quantidy.innerHTML++
+     let item = cart.find(item => item.id == elementId)
+     item.quantidy += 1
 
-    addToCart(elementId) // aumenta a quantidade do item chamando a função addToCart()
+     let productValue = products.filter(item => item.id == elementId)
+
+     let valueInCart = productValue[0].price * item.quantidy
+
+     item.price = valueInCart
+    
     updateTotalValueCart()
+    quantidyItems()
+   
+    addToCartScreen()
 
 }
 
-function minusButton(e) {
+function decreaseButton(e) {
     let quantidy = e.parentElement.querySelector("p")
-    console.log(quantidy)
-    let elementId = e.parentElement.parentElement.parentElement.getAttribute("data-key")
 
+    let elementId = e.parentElement.parentElement.getAttribute("data-key")
     quantidy.innerHTML--
-
     // diminui a quantidade do item no array
+
     let item = cart.find(item => item.id == elementId)
     item.quantidy -= 1
+  
+    let productValue = products.filter(item => item.id == elementId)
 
+    let valueInCart = productValue[0].price * item.quantidy
+
+    item.price = valueInCart
+    // se a quantidade for menor que 0, remove o item do carrinho
+    quantidyItems()
     updateTotalValueCart()
     removeToCart()
-    closeCartWhenThereAreNoItems()
+
+    addToCartScreen()
+    
+    // se a quantidade for menor que 0, remove o item do carrinho
+   
 }
 
 function updateTotalValueCart() {
@@ -182,34 +202,29 @@ function updateTotalValueCart() {
         return acumulador += (item.price * item.quantidy)
     }, 0)
 
-    document.querySelector(".cart-total").innerHTML = totalCartValue.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
+    document.querySelector(".total").innerHTML = totalCartValue.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
+
+    addToCartScreen()
 }
 
 function removeToCart() {
-
+    
     let newCart = cart.filter(item => item.quantidy !== 0)
 
     cart = newCart
-
+    quantidyItems()
     addToCartScreen()
-
+    
 }
 
-function closeCartWhenThereAreNoItems() {
 
-    if (cart.length == 0) {
-        closeCart()
-    }
-}
 
 const cartButton = document.querySelector(".cart")
 
 function openCart() {
-    if (window.innerWidth <= 750) {
+   
         cartButton.style.width = "100%"
-    } else {
-        cartButton.style.width = "550px"
-    }
+   
 }
 
 
@@ -282,21 +297,32 @@ if (window.innerWidth <= 808) {
 let shoeSize = undefined
 
 function selectSize(size){
-       shoeSize = size
+    shoeSize = size
+    console.log(shoeSize)
 }
 
-    const buttonAddToCart = document.querySelector(".add-to-cart")
-    buttonAddToCart.addEventListener("click", function () {
-        if(shoeSize != undefined){
-           const id = modal.getAttribute("data-key")
-           console.log(id)
+const buttonAddToCart = document.querySelector(".add-to-cart")
+
+
+    buttonAddToCart.addEventListener("click", () => {
+        const id = modal.getAttribute("data-key")
         addToCart(id, shoeSize)
-        updateTotalValueCart()
         closeModal()
-        }
-        shoeSize = undefined
-        
-    })
+        updateTotalValueCart()
+        quantidyItems()
+})
+
+function quantidyItems(){
+     let quantidy = cart.reduce((acumulador, item) => {
+        return acumulador += item.quantidy
+    }, 0)
+
+    document.querySelector(".items").innerHTML = `Items(${quantidy})`
+}
+
+
+
+
 
 add()
 buttonsAdd()

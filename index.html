@@ -81,12 +81,39 @@
         </main>
     </div>
     <aside class="cart">
+        <div class="cart-header">
+            <h2>Seu carrinho</h2>
+            <button class="b1"><span class="material-symbols-outlined" onclick="closeCart()">
+                keyboard_backspace
+            </span></button>
+            </div>
+        <div class="cart-main">
+            
+            <div class="cart-content"></div>
+           
+            <div class="resume-cart">
+                <h3>Resumo do Carrinho</h3>
+                <div>
+                    <p class="items">items (4)</p>
 
-        <div class="container-product"></div>
-        <div class="total">
-            <p class="cart-total">0,00</p>
-            <button class="finalizar" onclick="verify()">finalizar</button>
+                </div>
+                <div>
+                    <p>Desconto</p>
+                    <p class="descount">R$ 0,00</p>
+                </div>
+                <div>
+                    <p>Total a pagar</p>
+                    <p class="total">-</p>
+                </div>
+                <div>
+                    <input type="text" placeholder="Cupom de desconto" class="input-cupom">
+                    <button class="cupom">Adicionar</button>
+                </div>
+                <button class="finalizar" onclick="verify()">Finalizar a compra</button>
+                </div>
+            </div>
         </div>
+       
     </aside>
 
     <script src="js/dragscroll.js"></script>
