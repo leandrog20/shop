@@ -47,7 +47,7 @@ function separateByBrand() {
     })
 
     for (let i = 0; i < brands.length; i++) {
-        const body = document.querySelector("body")
+        const shoesSection = document.querySelector(".shoes")
         const section = document.createElement("section")
         const h2 = document.createElement("h2")
         const div = document.createElement("div")
@@ -57,13 +57,13 @@ function separateByBrand() {
         section.appendChild(h2)
         div.classList.add("dragscroll")
         section.appendChild(div)
-        body.appendChild(section)
+        shoesSection.appendChild(section)
     }
 }
 
 separateByBrand()
 
-products.map((element) => {
+products.forEach((element) => {
 
     const item = document.createElement("div")
     item.className = "item"
@@ -168,6 +168,8 @@ function increaseButton(e) {
    
     addToCartScreen()
 
+    document.querySelector(".discount-value").innerHTML = `R$ 0,00`
+
 }
 
 function decreaseButton(e) {
@@ -175,7 +177,6 @@ function decreaseButton(e) {
 
     let elementId = e.parentElement.parentElement.getAttribute("data-key")
     quantidy.innerHTML--
-    // diminui a quantidade do item no array
 
     let item = cart.find(item => item.id == elementId)
     item.quantidy -= 1
@@ -193,13 +194,13 @@ function decreaseButton(e) {
     addToCartScreen()
     
     // se a quantidade for menor que 0, remove o item do carrinho
-   
+    document.querySelector(".discount-value").innerHTML = `R$ 0,00`
 }
 
 function updateTotalValueCart() {
 
     const totalCartValue = cart.reduce((acumulador, item) => {
-        return acumulador += (item.price * item.quantidy)
+        return acumulador += item.price
     }, 0)
 
     document.querySelector(".total").innerHTML = totalCartValue.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
@@ -320,7 +321,41 @@ function quantidyItems(){
     document.querySelector(".items").innerHTML = `Items(${quantidy})`
 }
 
+function discount(){
 
+    let discountCode =  document.querySelector(".input-discount").value
+    let discountValue = 0
+    let total = 0
+    const valueCart = cart.reduce((accumulator, item) => {
+        return accumulator += item.price
+}, 0)
+
+    if(discountCode == "10%"){
+        total = valueCart * 0.1
+    } else if(discountCode == "20%"){
+        total = valueCart * 0.2
+    } else if(discountCode == "30%"){
+        total = valueCart * 0.3
+    } else {
+       const placeholder = document.querySelector(".input-discount")
+       placeholder.placeholder = "Código inválido"
+        placeholder.classList.add("invalid")
+        placeholder.value = ""
+        setTimeout(() => {
+            placeholder.classList.remove("invalid")
+            placeholder.placeholder = "Cupom de desconto"
+        }, 2000)
+    }
+
+    discountValue = valueCart - total;
+console.log(discountValue)
+console.log(total)
+    document.querySelector(".discount-value").innerHTML = `${total.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`
+    document.querySelector(".total").innerHTML = `${discountValue.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`
+
+    
+
+}
 
 
 

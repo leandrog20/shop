@@ -29,7 +29,7 @@
 
         <p>Descubra os melhores tênis para todos os estilos e ocasiões. Aqui você encontra conforto, qualidade e design
             em um só lugar. Explore nossa coleção e dê o próximo passo com estilo!</p>
-        <a href="#shoes">Catalogo</a>
+        <button><a href="#shoes">Catalogo</a></button>
     </main>
     <div class="slide">
         <div class="slider">
@@ -47,6 +47,9 @@
             </span></button>
     </div>
 
+    <div class="shoes">
+
+    </div>
 
     <div class="modal">
         <div class="modal-header">
@@ -94,27 +97,67 @@
             <div class="resume-cart">
                 <h3>Resumo do Carrinho</h3>
                 <div>
-                    <p class="items">items (4)</p>
+                    <p class="items">items (0)</p>
 
                 </div>
                 <div>
                     <p>Desconto</p>
-                    <p class="descount">R$ 0,00</p>
+                    <p class="discount-value">R$ 0,00</p>
                 </div>
                 <div>
                     <p>Total a pagar</p>
-                    <p class="total">-</p>
+                    <p class="total">R$ 0,00</p>
                 </div>
                 <div>
-                    <input type="text" placeholder="Cupom de desconto" class="input-cupom">
-                    <button class="cupom">Adicionar</button>
+                    <input type="text" placeholder="Cupom de desconto" class="input-discount">
+                    <button class="add-discount" onclick="discount()">Adicionar</button>
                 </div>
                 <button class="finalizar" onclick="verify()">Finalizar a compra</button>
                 </div>
             </div>
         </div>
-       
     </aside>
+    <footer>
+        <section>
+            <div>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAVFJREFUSEvtl+FRwzAMhV83gUkKkxQmKUwCTFKYpB2Ffj0rpxjZ8aVO84PqLn8Sy0/vWZKVjVayzUq4ugPfTPlc6hdJe0kPMyJ4P/u8tfp5YMCOrY7Bum9Jz63+HphoYTvXVgVGbrOTJJ7QejKOAIrnvjQwwTxGzHsCI+uro/2RqoP3JN1I9p7AeXL5ZP0j+ZLAkKc8rSeMJF8a+EnSIck/Yt0TuKX+B9a3Bh5Y34Gv6dUtZxxKzZVI0fteaw2BgMjQKWPjz7Q2ul5D4LzufPr7siiB05nIWjNIQMYTGb7ng0Cp7vxdTYf6cRtunRq+SfjmgXIoMVg07JkDDL5Sj/Wy0XcBN/NHxHt8CMbYhvd0BFwbCHI5DZzuVMqBPNCLT2m8jTay28ezNWCOwhLQejPryJNofXWuhsEu7cyZjs6okt74VaePGuOpsrn6+//7k/gFUHlUH/qrMtMAAAAASUVORK5CYII="/>
+                <h4>Frete Gratis</h4>
+                <p>Entrega Gratis adquirindo 2 dos nossos tenis</p>
+            </div>
+            <div>
+                <img src="https://cdn.shoppub.io/cdn-cgi/image/q=80,f=auto/usereise/media/uploads/banners/2022/igrgmsjq/primeira-troca-gratis.png" alt="">
+                <h4>Primeira devolução gratis</h4>
+                <p>você tem até 30 dias para efetuar a devolução</p>
+            </div>
+            <div>
+                <img src="https://cdn.shoppub.io/cdn-cgi/image/q=80,f=auto/usereise/media/uploads/banners/2022/palcbyfg/pix.png" alt="">
+                <h4>Formas de pagamento</h4>
+                <p>Pix ou cartão de crédito em até 10x sem juros</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h4>Sobre nós</h4>
+                <p>Stride Store é uma loja de tênis online que oferece uma ampla variedade de modelos e marcas para todos os
+                    estilos e ocasiões. Nossa missão é proporcionar aos nossos clientes a melhor experiência de compra,
+                    com produtos de qualidade e atendimento excepcional.</p>
+            </div>
+            <div>
+                <h4>Duvidas</h4>
+                <a href="">Troca e Devoluções</a>
+                <a href="">Como cuidar do seu tênis</a>
+                <a href="">Política de privacidade</a>
+                <a href="">Políticas de Garantia e Reembolso</a>
+            </div>
+            <div>
+                <h4>Onde nós encontrar?</h4>
+                <p>Rua das Flores, 123 - Centro</p>
+                <p>São Paulo - SP</p>
+                <p>CNPJ - 12.345.678/0001-90</p>
+            </div>
+        </section>
+        <form action=""></form>
+    </footer>
 
     <script src="js/dragscroll.js"></script>
     <script src="js/index.js"></script>
