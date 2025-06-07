@@ -8,19 +8,24 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <title>Document</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    
 </head>
 
 <body>
     <header>
         <img src="img/stride Strore.svg" alt="logo">
-        <nav class="menu">
-            <div class="cart-icon" onclick="openCart()">
-                <button class="cart-btn"><span class="material-symbols-outlined">
-                        shopping_bag
-                    </span></button>
+        <div class="cart-icon" onclick="openCart()">
+            <button class="cart-btn" aria-label="carrinho"><span class="material-symbols-outlined">
+                    shopping_bag
+                </span></button>
             </div>
-            <a href="#">Entrar</a>
-            <a href="#">Fale conosco!</a>
+        <nav class="menu">
+            <ul>
+                <li><a href="#form">Fale conosco!</a></li>
+                <li><a href="#about">Sobre</a></li>
+            </ul>
         </nav>
     </header>
     <main class="container" onclick="closeCart()">
@@ -29,7 +34,7 @@
 
         <p>Descubra os melhores tênis para todos os estilos e ocasiões. Aqui você encontra conforto, qualidade e design
             em um só lugar. Explore nossa coleção e dê o próximo passo com estilo!</p>
-        <button><a href="#shoes">Catalogo</a></button>
+        <button aria-label="acessar catalogo"><a href="#shoes">Catalogo</a></button>
     </main>
     <div class="slide">
         <div class="slider">
@@ -39,10 +44,10 @@
                 <img src="img/banner 3.webp" alt="">
             </div>
         </div>
-        <button id="previousSlide"><span class="material-symbols-outlined">
+        <button id="previousSlide" aria-label="slide anterior"><span class="material-symbols-outlined">
                 arrow_back
             </span></button>
-        <button id="nextSlide"><span class="material-symbols-outlined">
+        <button id="nextSlide" aria-label="proximo slide"><span class="material-symbols-outlined">
                 arrow_forward
             </span></button>
     </div>
@@ -69,24 +74,24 @@
         <div class="size">
             <h3>Tamanhos</h3>
             <div class="size-options">
-                <button class="size-option" onclick="selectSize('38')">38</button>
-                <button class="size-option" onclick="selectSize('39')">39</button>
-                <button class="size-option" onclick="selectSize('40')">40</button>
-                <button class="size-option" onclick="selectSize('41')">41</button>
-                <button class="size-option" onclick="selectSize('42')">42</button>
-                <button class="size-option" onclick="selectSize('43')">43</button>
-                <button class="size-option" onclick="selectSize('44')">44</button>
+                <button class="size-option" onclick="selectSize('38')" aria-label="tamanho">38</button>
+                <button class="size-option" onclick="selectSize('39')" aria-label="tamanho">39</button>
+                <button class="size-option" onclick="selectSize('40')" aria-label="tamanho">40</button>
+                <button class="size-option" onclick="selectSize('41')" aria-label="tamanho">41</button>
+                <button class="size-option" onclick="selectSize('42')" aria-label="tamanho">42</button>
+                <button class="size-option" onclick="selectSize('43')" aria-label="tamanho">43</button>
+                <button class="size-option" onclick="selectSize('44')" aria-label="tamanho">44</button>
             </div>
         </div>
         <div class="modal-footer">
-            <button class="add-to-cart">Adicionar ao Carrinho</button>
+            <button class="add-to-cart" aria-label="adicionar ao carrinho">Adicionar ao Carrinho</button>
         </div>
         </main>
     </div>
-    <aside class="cart">
+    <div class="cart">
         <div class="cart-header">
             <h2>Seu carrinho</h2>
-            <button class="b1"><span class="material-symbols-outlined" onclick="closeCart()">
+            <button class="b1" aria-label="fechar carrinho"><span class="material-symbols-outlined" onclick="closeCart()">
                 keyboard_backspace
             </span></button>
             </div>
@@ -110,32 +115,31 @@
                 </div>
                 <div>
                     <input type="text" placeholder="Cupom de desconto" class="input-discount">
-                    <button class="add-discount" onclick="discount()">Adicionar</button>
+                    <button class="add-discount" onclick="discount()" aria-label="adicionar desconto">Adicionar</button>
                 </div>
-                <button class="finalizar" onclick="verify()">Finalizar a compra</button>
+                <button class="finalizar" onclick="verify()" aria-label="finalizar a compra">Finalizar a compra</button>
                 </div>
             </div>
         </div>
-    </aside>
     <footer>
         <section>
             <div>
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAVFJREFUSEvtl+FRwzAMhV83gUkKkxQmKUwCTFKYpB2Ffj0rpxjZ8aVO84PqLn8Sy0/vWZKVjVayzUq4ugPfTPlc6hdJe0kPMyJ4P/u8tfp5YMCOrY7Bum9Jz63+HphoYTvXVgVGbrOTJJ7QejKOAIrnvjQwwTxGzHsCI+uro/2RqoP3JN1I9p7AeXL5ZP0j+ZLAkKc8rSeMJF8a+EnSIck/Yt0TuKX+B9a3Bh5Y34Gv6dUtZxxKzZVI0fteaw2BgMjQKWPjz7Q2ul5D4LzufPr7siiB05nIWjNIQMYTGb7ng0Cp7vxdTYf6cRtunRq+SfjmgXIoMVg07JkDDL5Sj/Wy0XcBN/NHxHt8CMbYhvd0BFwbCHI5DZzuVMqBPNCLT2m8jTay28ezNWCOwhLQejPryJNofXWuhsEu7cyZjs6okt74VaePGuOpsrn6+//7k/gFUHlUH/qrMtMAAAAASUVORK5CYII="/>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAVFJREFUSEvtl+FRwzAMhV83gUkKkxQmKUwCTFKYpB2Ffj0rpxjZ8aVO84PqLn8Sy0/vWZKVjVayzUq4ugPfTPlc6hdJe0kPMyJ4P/u8tfp5YMCOrY7Bum9Jz63+HphoYTvXVgVGbrOTJJ7QejKOAIrnvjQwwTxGzHsCI+uro/2RqoP3JN1I9p7AeXL5ZP0j+ZLAkKc8rSeMJF8a+EnSIck/Yt0TuKX+B9a3Bh5Y34Gv6dUtZxxKzZVI0fteaw2BgMjQKWPjz7Q2ul5D4LzufPr7siiB05nIWjNIQMYTGb7ng0Cp7vxdTYf6cRtunRq+SfjmgXIoMVg07JkDDL5Sj/Wy0XcBN/NHxHt8CMbYhvd0BFwbCHI5DZzuVMqBPNCLT2m8jTay28ezNWCOwhLQejPryJNofXWuhsEu7cyZjs6okt74VaePGuOpsrn6+//7k/gFUHlUH/qrMtMAAAAASUVORK5CYII=" alt="icone de frete gratis"/>
                 <h4>Frete Gratis</h4>
                 <p>Entrega Gratis adquirindo 2 dos nossos tenis</p>
             </div>
             <div>
-                <img src="https://cdn.shoppub.io/cdn-cgi/image/q=80,f=auto/usereise/media/uploads/banners/2022/igrgmsjq/primeira-troca-gratis.png" alt="">
+                <img src="https://cdn.shoppub.io/cdn-cgi/image/q=80,f=auto/usereise/media/uploads/banners/2022/igrgmsjq/primeira-troca-gratis.png" alt="icone de devolução">
                 <h4>Primeira devolução gratis</h4>
                 <p>você tem até 30 dias para efetuar a devolução</p>
             </div>
             <div>
-                <img src="https://cdn.shoppub.io/cdn-cgi/image/q=80,f=auto/usereise/media/uploads/banners/2022/palcbyfg/pix.png" alt="">
+                <img src="https://cdn.shoppub.io/cdn-cgi/image/q=80,f=auto/usereise/media/uploads/banners/2022/palcbyfg/pix.png" alt="formas de pagamento">
                 <h4>Formas de pagamento</h4>
                 <p>Pix ou cartão de crédito em até 10x sem juros</p>
             </div>
         </section>
-        <section>
+        <section id="about">
             <div>
                 <h4>Sobre nós</h4>
                 <p>Stride Store é uma loja de tênis online que oferece uma ampla variedade de modelos e marcas para todos os
@@ -144,10 +148,12 @@
             </div>
             <div>
                 <h4>Duvidas</h4>
-                <a href="">Troca e Devoluções</a>
-                <a href="">Como cuidar do seu tênis</a>
-                <a href="">Política de privacidade</a>
-                <a href="">Políticas de Garantia e Reembolso</a>
+                <ul>
+                    <li><a href="#">Troca e Devoluções</a></li>
+                    <li><a href="#">Como cuidar do seu tênis</a></li>
+                    <li><a href="#">Política de privacidade</a></li>
+                    <li><a href="#">Políticas de Garantia e Reembolso</a></li>
+                </ul> 
             </div>
             <div>
                 <h4>Onde nós encontrar?</h4>
@@ -156,11 +162,20 @@
                 <p>CNPJ - 12.345.678/0001-90</p>
             </div>
         </section>
-        <form action=""></form>
+        <div class="form">
+            <h4>Fale Conosco</h4>
+            <form action="" id="form">
+                <input type="text" placeholder="Nome">
+                <input type="email" placeholder="Email">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Mensagem"></textarea>
+                <input type="submit" value="Enviar" onclick="alert('Mensagem enviada com sucesso!')">
+            </form>
+        </div>
     </footer>
 
     <script src="js/dragscroll.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/slider.js"></script>
 
 </body>
 

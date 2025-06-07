@@ -146,7 +146,6 @@ let elements = ""
         </div>`
     })
 
-    // document.querySelector(".cart-content").appendChild(cartProduct)
     document.querySelector(".cart-content").innerHTML = elements
 }
 
@@ -186,14 +185,10 @@ function decreaseButton(e) {
     let valueInCart = productValue[0].price * item.quantidy
 
     item.price = valueInCart
-    // se a quantidade for menor que 0, remove o item do carrinho
     quantidyItems()
     updateTotalValueCart()
     removeToCart()
-
     addToCartScreen()
-    
-    // se a quantidade for menor que 0, remove o item do carrinho
     document.querySelector(".discount-value").innerHTML = `R$ 0,00`
 }
 
@@ -209,7 +204,6 @@ function updateTotalValueCart() {
 }
 
 function removeToCart() {
-    
     let newCart = cart.filter(item => item.quantidy !== 0)
 
     cart = newCart
@@ -223,9 +217,7 @@ function removeToCart() {
 const cartButton = document.querySelector(".cart")
 
 function openCart() {
-   
         cartButton.style.width = "100%"
-   
 }
 
 
@@ -233,24 +225,6 @@ function closeCart() {
     cartButton.style.width = "0px"
 }
 
-
-function controlSlider() {
-    const slider = document.querySelector(".slider")
-    const left = document.querySelector("#previousSlide")
-    const right = document.querySelector("#nextSlide")
-
-    const { width: sliderWidth } = window.getComputedStyle(slider)
-
-    left.addEventListener("click", function () {
-        slider.scrollLeft -= parseInt(sliderWidth)
-    })
-
-    right.addEventListener("click", function () {
-        slider.scrollLeft += parseInt(sliderWidth) + 0.1
-    })
-}
-
-controlSlider()
 
 function add() {
     btn = document.getElementsByClassName("add")
@@ -356,8 +330,6 @@ console.log(total)
     
 
 }
-
-
 
 add()
 buttonsAdd()
