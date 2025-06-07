@@ -93,7 +93,7 @@ header {
 }
 
 .container>h1 {
-    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.229);
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.229); color: red;
 }
 
 .container>p {

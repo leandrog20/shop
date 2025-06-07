@@ -242,7 +242,7 @@ window.addEventListener("resize", () => {
     if (cartButton.style.width === "100%") {
         const viewportHeight = window.innerHeight;
         cartButton.style.height = `${viewportHeight - 60}px`;
-    }
+    } // Ajusta a altura do carrinho para ocupar toda a altura da tela menos o cabeçalho (necessario para dispositivos móveis como no caso do iphone)
 });
 
 
