@@ -230,17 +230,22 @@ function removeToCart() {
 const cartButton = document.querySelector(".cart")
 
 function openCart() {
-        cartButton.style.width = "100%"      
+        cartButton.style.width = "100%"  
+        const viewportHeight = window.innerHeight;
+        cartButton.style.height = `${viewportHeight - 60}px`; // Ajusta a altura do carrinho para ocupar toda a altura da tela menos o cabeçalho (necessario para dispositivos móveis como no caso do iphone)    
 }
 
 function closeCart() {
     cartButton.style.width = "0px"    
 }
 
+function getViewportHeight() {
+    return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+}
+
 window.addEventListener("resize", () => {
-    const cartButton = document.querySelector(".cart");
     if (cartButton.style.width === "100%") {
-        const viewportHeight = window.innerHeight;
+        const viewportHeight = getViewportHeight();
         cartButton.style.height = `${viewportHeight - 60}px`;
     } // Ajusta a altura do carrinho para ocupar toda a altura da tela menos o cabeçalho (necessario para dispositivos móveis como no caso do iphone)
 });
