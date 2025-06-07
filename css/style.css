@@ -190,15 +190,17 @@ section>div::-webkit-scrollbar, .cart::-webkit-scrollbar {
 
 .cart {
     position: fixed;
-    width: 0%;
+    width: 100%; 
+    max-width: 100%; 
     background-color: #f0f2eb;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 60px); 
     bottom: 0;
-    transition: width 0.2s;
+    transition: width 0.2s ease-in-out;
     border-top: 1px solid var(--color1);
     z-index: 1;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    box-sizing: border-box;
 }
 
 
@@ -688,5 +690,14 @@ footer > section:nth-child(2) div > p{
       .modal{
           height: 750px;
       }
+}
+
+@media screen and (max-width: 375px) {
+    .cart {
+        width: 100%;
+        height: calc(100vh - 60px); 
+        overflow-y: auto; 
+        overflow-x: hidden; 
+    }
 }
 
