@@ -190,7 +190,7 @@ section>div::-webkit-scrollbar, .cart::-webkit-scrollbar {
 
 .cart {
     position: fixed;
-    width: 100%; 
+    width: 0%; 
     max-width: 100%; 
     background-color: #f0f2eb;
     height: calc(100vh - 60px); 
