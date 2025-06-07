@@ -230,20 +230,20 @@ function removeToCart() {
 const cartButton = document.querySelector(".cart")
 
 function openCart() {
-        cartButton.style.width = "100%"
-        setTimeout(() => {
-            const body = document.querySelector("body")
-        body.style.overflow = "hidden"
-        }, 200)
-        
+        cartButton.style.width = "100%"      
 }
-
 
 function closeCart() {
-    cartButton.style.width = "0px"
-    const body = document.querySelector("body")
-        body.style.overflow = "auto"
+    cartButton.style.width = "0px"    
 }
+
+window.addEventListener("resize", () => {
+    const cartButton = document.querySelector(".cart");
+    if (cartButton.style.width === "100%") {
+        const viewportHeight = window.innerHeight;
+        cartButton.style.height = `${viewportHeight - 60}px`;
+    }
+});
 
 
 function add() {
