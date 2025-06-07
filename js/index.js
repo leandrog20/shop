@@ -47,11 +47,11 @@ function separateByBrand() {
     })
 
     for (let i = 0; i < brands.length; i++) {
-        const shoesSection = document.querySelector(".shoes")
+        const shoesSection = document.querySelector("#shoes")
         const section = document.createElement("section")
         const h2 = document.createElement("h2")
         const div = document.createElement("div")
-        section.id = "shoes"
+        
         section.setAttribute("data-key", `${brands[i]}`)
         h2.innerHTML = `${brands[i]}`
         section.appendChild(h2)
@@ -62,6 +62,18 @@ function separateByBrand() {
 }
 
 separateByBrand()
+
+function updateCartCounter() {
+    const cartCounter = document.querySelector(".cart-counter");
+    const totalItems = cart.reduce((accumulator, item) => {
+        return accumulator + item.quantidy;
+    }, 0);
+
+    cartCounter.textContent = totalItems; // Atualiza o contador com o total de itens
+}
+
+// Chame a função sempre que o carrinho for atualizado
+updateCartCounter();
 
 products.forEach((element) => {
 
@@ -120,7 +132,7 @@ if(size != undefined) {
     }
 }
     addToCartScreen()
-
+    updateCartCounter();
 }
 
 function addToCartScreen() {
@@ -166,7 +178,7 @@ function increaseButton(e) {
     quantidyItems()
    
     addToCartScreen()
-
+    updateCartCounter();
     document.querySelector(".discount-value").innerHTML = `R$ 0,00`
 
 }
@@ -189,6 +201,7 @@ function decreaseButton(e) {
     updateTotalValueCart()
     removeToCart()
     addToCartScreen()
+    updateCartCounter();
     document.querySelector(".discount-value").innerHTML = `R$ 0,00`
 }
 
