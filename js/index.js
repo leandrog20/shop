@@ -250,6 +250,14 @@ window.addEventListener("resize", () => {
     } // Ajusta a altura do carrinho para ocupar toda a altura da tela menos o cabeçalho (necessario para dispositivos móveis como no caso do iphone)
 });
 
+window.addEventListener("scroll", () => {
+    const cartButton = document.querySelector(".cart");
+    if (cartButton.style.width === "100%") {
+        const viewportHeight = getViewportHeight();
+        cartButton.style.height = `${viewportHeight - 60}px`; // Ajusta a altura durante o scroll
+    }
+});
+
 
 function add() {
     btn = document.getElementsByClassName("add")
