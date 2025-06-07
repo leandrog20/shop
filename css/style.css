@@ -483,9 +483,15 @@ section>div::-webkit-scrollbar, .cart::-webkit-scrollbar {
     transition: all 0.2s ease-in-out;
 }
 
-.size-options>button:focus{
+.size-option:hover {
     background-color: var(--color1);
     color: #fff;
+}
+
+.size-option.selected {
+    background-color: var(--color1);
+    color: #fff;
+    border-color: var(--color2);
 }
 
 .modal>.modal-footer {

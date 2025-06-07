@@ -269,6 +269,8 @@ function openModal(id) {
 
 function closeModal() {
     modal.id = ""
+    const sizeButtons = document.querySelectorAll(".size-option");
+     sizeButtons.forEach(button => button.classList.remove("selected"));
 }
 
 if (window.innerWidth <= 808) {
@@ -286,7 +288,12 @@ let shoeSize = undefined
 
 function selectSize(size){
     shoeSize = size
-    console.log(shoeSize)
+    
+     const sizeButtons = document.querySelectorAll(".size-option");
+     sizeButtons.forEach(button => button.classList.remove("selected"));
+     const selectedButton = document.querySelector(`.size-option[onclick="selectSize('${size}')"]`);
+     selectedButton.classList.add("selected");
+    
 }
 
 const buttonAddToCart = document.querySelector(".add-to-cart")
