@@ -239,24 +239,50 @@ function closeCart() {
     cartButton.style.width = "0px"    
 }
 
+let isUpdatingCartHeight = false;
+
+function updateCartHeight() {
+    const cartButton = document.querySelector(".cart");
+    if (cartButton.style.width === "100%") {
+        const viewportHeight = getViewportHeight();
+        cartButton.style.height = `${viewportHeight - 60}px`; // Ajusta a altura dinamicamente
+    }
+    isUpdatingCartHeight = false; // Marca que a atualização foi concluída
+}
+
 function getViewportHeight() {
     return window.visualViewport ? window.visualViewport.height : window.innerHeight;
 }
 
 window.addEventListener("resize", () => {
-    if (cartButton.style.width === "100%") {
-        const viewportHeight = getViewportHeight();
-        cartButton.style.height = `${viewportHeight - 60}px`;
-    } // Ajusta a altura do carrinho para ocupar toda a altura da tela menos o cabeçalho (necessario para dispositivos móveis como no caso do iphone)
+    if (!isUpdatingCartHeight) {
+        isUpdatingCartHeight = true;
+        requestAnimationFrame(updateCartHeight); // Atualiza a altura de forma suave
+    }
 });
 
 window.addEventListener("scroll", () => {
-    const cartButton = document.querySelector(".cart");
-    if (cartButton.style.width === "100%") {
-        const viewportHeight = getViewportHeight();
-        cartButton.style.height = `${viewportHeight - 60}px`; // Ajusta a altura durante o scroll
+    if (!isUpdatingCartHeight) {
+        isUpdatingCartHeight = true;
+        requestAnimationFrame(updateCartHeight); // Atualiza a altura durante o scroll
     }
 });
+
+function openCart() {
+    const cartButton = document.querySelector(".cart");
+    const viewportHeight = getViewportHeight();
+
+    cartButton.style.width = "100%";
+    cartButton.style.height = `${viewportHeight - 60}px`; // Ajusta a altura do carrinho
+    document.body.style.overflow = "hidden"; // Impede o scroll no corpo
+}
+
+function closeCart() {
+    const cartButton = document.querySelector(".cart");
+
+    cartButton.style.width = "0px";
+    document.body.style.overflow = "auto"; // Permite o scroll no corpo novamente
+}
 
 
 function add() {
