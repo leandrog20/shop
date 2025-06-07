@@ -231,11 +231,18 @@ const cartButton = document.querySelector(".cart")
 
 function openCart() {
         cartButton.style.width = "100%"
+        setTimeout(() => {
+            const body = document.querySelector("body")
+        body.style.overflow = "hidden"
+        }, 200)
+        
 }
 
 
 function closeCart() {
     cartButton.style.width = "0px"
+    const body = document.querySelector("body")
+        body.style.overflow = "auto"
 }
 
 
