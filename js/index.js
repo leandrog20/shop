@@ -227,23 +227,33 @@ function removeToCart() {
 
 
 
-const cartButton = document.querySelector(".cart")
+const cartModal = document.querySelector(".cart")
 
 
 
 function openCart() {
-    const viewportHeight = window.innerHeight;
-
-    cartButton.style.width = "100%";
-    cartButton.style.height = `${viewportHeight - 60}px`; // Ajusta a altura do carrinho
-    document.body.style.overflow = "hidden"; // Impede o scroll no corpo
+    cartModal.style.width = "100%";
+    document.body.style.overflow = "hidden"; 
 }
 
 function closeCart() {
 
-    cartButton.style.width = "0px";
-    document.body.style.overflow = "auto"; // Permite o scroll no corpo novamente
+    cartModal.style.width = "0px";
+    document.body.style.overflow = "auto";
 }
+
+function resizeCart() {
+
+    const viewportHeight = window.innerHeight;
+    cartModal.style.height = `${viewportHeight}px`; // Ajusta a altura do carrinho ao redimensionar
+ 
+}
+
+window.addEventListener("resize", () => {
+
+    resizeCart();
+     
+});
 
 
 function add() {
@@ -280,15 +290,17 @@ function closeModal() {
      sizeButtons.forEach(button => button.classList.remove("selected"));
 }
 
-if (window.innerWidth <= 808) {
+if (window.innerWidth <= 769) {
+
     const item = document.getElementsByClassName("img")
     for (let i = 0; i < item.length; i++) {
         item[i].addEventListener("click", function () {
             const id = item[i].parentElement.getAttribute("data-key")
             openModal(id)
-
         })
     }
+
+    resizeCart();
 }
 
 let shoeSize = undefined
@@ -349,14 +361,11 @@ function discount(){
     }
 
     discountValue = valueCart - total;
-console.log(discountValue)
-console.log(total)
     document.querySelector(".discount-value").innerHTML = `${total.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`
     document.querySelector(".total").innerHTML = `${discountValue.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`
-
-    
-
 }
+
+
 
 add()
 buttonsAdd()

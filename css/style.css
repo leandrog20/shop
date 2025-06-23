@@ -13,6 +13,7 @@
   font-family: 'rubik', sans-serif; 
     font-weight: 600;
     text-decoration: none;
+    
 }
 
 :root{
@@ -26,7 +27,9 @@
     --color8: #136db5;
 }
 
-
+[id] {
+    scroll-margin-top: 80px; /* Ajuste o valor para a altura do cabeçalho fixo */
+}
 
 
 html {
@@ -52,12 +55,38 @@ a {
 
 header {
     gap: 60px;
-    max-height: 60px;
+    height: 60px;
     position: fixed;
     width: 100vw;
+    padding: 40px 0px;
     background-color: #fff;
     z-index: 1;
     align-items: center;
+    margin-bottom: 10px;
+    transition: 0.5s;
+}
+
+header.scrolled{
+padding: 0px 0px;
+
+}
+
+header.headerColor{
+        background: linear-gradient(97deg,rgb(2, 21, 105) 70%, rgba(255, 255, 255, 0) 100%);
+}
+
+header.headerColor > .menu > ul > li > a {
+    color: #fff;
+    transition: 0.7s;
+}
+
+header.headerColor  button span{
+    color: #fff;
+}
+
+header.headerColor  button .cart-counter{
+    background-color: #fff;
+    color: #000;
 }
 
 .menu > ul {
@@ -78,10 +107,10 @@ header {
     height: 100vh;
     width: 100%;
     background-color: var(--color1);
-    background-image: url(../img/imagem-de-fundo-desktop-_2_.webp);
+    background-image: url(../img/imagem\ de\ fundo\ desktop\ \(1\).svg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom right;
+    background-position: bottom center;
     color: #fff;
     display: flex;
     gap: 20px;
@@ -93,7 +122,7 @@ header {
 }
 
 .container>h1 {
-    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.229); color: red;
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.229);
 }
 
 .container>p {
@@ -143,7 +172,20 @@ header {
     margin-left: 50px;
 }
 
+.brands-container{
+    flex-wrap: 1;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
 
+.brands-container > div > img{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    margin: auto;
+    padding-top: 100px;
+    object-fit: cover;
+}
 section>div {
     gap: 30px;
     cursor: pointer;
@@ -552,7 +594,7 @@ footer > section:nth-child(2) > div {
    flex-direction: column;
    flex-basis: 300px;
    text-align: center;
-   margin-bottom: 20px;
+
 }
 
 footer > section:nth-child(2) > div > h4{
@@ -565,6 +607,11 @@ footer > section:nth-child(2) div > p{
     margin-top: 5px;
     font-weight: 400;
     color: gray;
+}
+
+footer ul > li{
+    margin-bottom: 10px;
+    color: #555;
 }
 
 .form{
@@ -635,7 +682,7 @@ footer > section:nth-child(2) div > p{
     .container {
         text-align: justify;
         margin: 0 auto;
-        background-image: url(../img/imagem-de-fundo-mobile-_1_.webp);
+        background-image: url(../img/imagem\ de\ fundo\ mobile\ \(1\).svg);
         margin-bottom: 55px;
     }
 
@@ -684,12 +731,16 @@ footer > section:nth-child(2) div > p{
     .form{
         width: 90%;
     }
+
+    
 }
 
 @media (max-width: 650px) {
       .modal{
           height: 750px;
       }
+
+      
 }
 
 @media screen and (max-width: 375px) {

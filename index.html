@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <img src="img/stride Strore.svg" alt="logo">
+        <img src="img/logo.svg" alt="logo">
         <div class="cart-icon" onclick="openCart()">
             <button class="cart-btn" aria-label="carrinho">
                 <span class="material-symbols-outlined">
@@ -30,14 +30,18 @@
             </ul>
         </nav>
     </header>
-    <main class="container" onclick="closeCart()">
-
-        <h1>Stride Store</h1>
-
-        <p>Descubra os melhores tênis para todos os estilos e ocasiões. Aqui você encontra conforto, qualidade e design
-            em um só lugar. Explore nossa coleção e dê o próximo passo com estilo!</p>
-        <button aria-label="acessar catalogo"><a href="#shoes">Catalogo</a></button>
+    <main class="container">
     </main>
+    <div class="brands-container">
+        <h1>Nossas Marcas</h1>
+        <div class="brands">
+            <img src="img/nike.png" alt="Nike">
+            <img src="img/adidas.png" alt="Adidas">
+            <img src="img/asics.png" alt="Puma">
+            <img src="img/mizuno.png" alt="Reebok">
+            <img src="img/vans.png" alt="New Balance">
+        </div>
+     </div>
     <div class="slide">
         <div class="slider">
             <div class="content">
@@ -148,7 +152,7 @@
                     estilos e ocasiões. Nossa missão é proporcionar aos nossos clientes a melhor experiência de compra,
                     com produtos de qualidade e atendimento excepcional.</p>
             </div>
-            <div>
+            <div class="links">
                 <h4>Duvidas</h4>
                 <ul>
                     <li><a href="#">Troca e Devoluções</a></li>
@@ -159,9 +163,14 @@
             </div>
             <div>
                 <h4>Onde nós encontrar?</h4>
-                <p>Rua das Flores, 123 - Centro</p>
-                <p>São Paulo - SP</p>
-                <p>CNPJ - 12.345.678/0001-90</p>
+                <ul>
+                    <li><p>Rua das Flores, 123 - Centro</p></li>
+                    <li><p>São Paulo - SP</p></li>
+                    <li><p>CNPJ - 12.345.678/0001-90</p></li>
+                </ul>
+               
+                
+                
             </div>
         </section>
         <div class="form">
@@ -178,7 +187,7 @@
     <script src="js/dragscroll.js"></script>
     <script src="js/index.js"></script>
     <script src="js/slider.js"></script>
-
+    <script src="js/headerScroll.js"></script>
 </body>
 
 </html>
